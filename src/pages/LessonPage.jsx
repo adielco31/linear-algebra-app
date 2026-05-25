@@ -44,6 +44,13 @@ const LESSON_FORMULA = {
   'geometric-transforms':   String.raw`\underbrace{\begin{pmatrix}k&0\\0&k\end{pmatrix}}_{\text{מתיחה }k}\quad\underbrace{\begin{pmatrix}1&0\\0&-1\end{pmatrix}}_{\text{שיקוף }x}\quad\underbrace{\begin{pmatrix}1&0\\0&0\end{pmatrix}}_{\text{הטלה }x}`,
   'kernel-image':           String.raw`\ker(T)=\mathrm{Null}(A)\quad\mathrm{Im}(T)=\mathrm{Col}(A)\quad\dim\ker+\dim\mathrm{Im}=n`,
   'injective-surjective':   String.raw`\underbrace{\ker(T)=\{\mathbf{0}\}}_{\text{חד-חד-ערכית}}\Longleftrightarrow\mathrm{rank}=n\qquad\underbrace{\mathrm{Im}(T)=\mathbb{R}^m}_{\text{על}}\Longleftrightarrow\mathrm{rank}=m`,
+
+  // Module 7 — Invertible Matrices and Determinants
+  'invertible-intro':            String.raw`A^{-1}A = AA^{-1} = I \qquad Ax=b \Rightarrow x = A^{-1}b`,
+  'finding-inverse':             String.raw`[A \mid I] \xrightarrow{\text{דירוג}} [I \mid A^{-1}]`,
+  'invertibility-conditions':    String.raw`A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}=n\;\Longleftrightarrow\;\mathrm{Null}=\{0\}\;\Longleftrightarrow\;\det(A)\neq 0`,
+  'determinant-intro':           String.raw`\det\!\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc \qquad |\det(A)|=\text{שינוי שטח/נפח}`,
+  'determinant-invertibility':   String.raw`\det(A)\neq 0\;\Longleftrightarrow\;A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}(A)=n`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────

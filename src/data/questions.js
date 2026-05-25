@@ -5472,6 +5472,670 @@ rank < m=3 → T לא על. ✓
     },
     commonMistakeTag: 'מטריצה ריבועית rank=n ⟺ חד-חד-ערכית ⟺ על ⟺ הפיכה',
   },
+
+  // ─────────────────────────────────────────────────────
+  // Module 7 — מטריצות הפיכות ודטרמיננטות
+  // ─────────────────────────────────────────────────────
+
+  // שיעור 1: מהי מטריצה הפיכה? (q199–q204)
+  {
+    id: 'q199',
+    lessonId: 'invertible-intro',
+    topic: 'הגדרת מטריצה הפיכה',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'A מטריצה ריבועית הפיכה. מהי A⁻¹?',
+    options: [
+      'מטריצה שמקיימת A⁻¹A = AA⁻¹ = I',
+      'המטריצה הנגדית −A',
+      'מטריצה שכל איבריה הם 1/aᵢⱼ',
+      'מטריצת הטרנספוז Aᵀ',
+    ],
+    correctAnswer: 0,
+    explanation: 'A⁻¹ מוגדרת ע"י התכונה A⁻¹A = AA⁻¹ = I. לא כל מטריצה ריבועית הפיכה — קיומה של A⁻¹ הוא תכונה מיוחדת.',
+    wrongAnswerFeedback: {
+      1: '−A היא הנגדית, לא ההופכית. A+(−A)=0, לא I.',
+      2: '1/aᵢⱼ שגויה בכלל. לדוגמה: [[1,1],[0,1]]⁻¹ = [[1,−1],[0,1]], לא [[1,1],[∞,1]].',
+      3: 'Aᵀ היא מטריצת הטרנספוז. (Aᵀ)⁻¹ = (A⁻¹)ᵀ — לא אותו הדבר.',
+    },
+    commonMistakeTag: 'A⁻¹A = I — הגדרת ההופכית',
+  },
+
+  {
+    id: 'q200',
+    lessonId: 'invertible-intro',
+    topic: 'הפיכות ופתרון Ax=b',
+    difficulty: 1,
+    type: 'conceptual',
+    question: 'אם A מטריצה ריבועית הפיכה, כמה פתרונות יש למערכת Ax=b לכל b?',
+    options: [
+      'פתרון יחיד: x = A⁻¹b',
+      'אין פתרון',
+      'אינסוף פתרונות',
+      'תלוי בוקטור b',
+    ],
+    correctAnswer: 0,
+    explanation: 'Ax=b ⟹ A⁻¹(Ax) = A⁻¹b ⟹ x = A⁻¹b. הפתרון יחיד לכל b, מכיוון ש-A הפיכה ↔ rank=n ↔ Null={0}.',
+    wrongAnswerFeedback: {
+      1: 'A הפיכה → rank=n → Ax=b עקיבה לכל b. לא ייתכן אין פתרון.',
+      2: 'A הפיכה → rank=n → nullity=0 → Null={0} → פתרון יחיד, לא אינסוף.',
+      3: 'A הפיכה מבטיחה פתרון יחיד לכל b ∈ Rⁿ — לא תלוי ב-b.',
+    },
+    commonMistakeTag: 'A הפיכה → Ax=b מאפשרת פתרון יחיד לכל b',
+  },
+
+  {
+    id: 'q201',
+    lessonId: 'invertible-intro',
+    topic: 'אימות מטריצה הופכית',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A = [[3,1],[5,2]]. הוצע A⁻¹ = [[2,−1],[−5,3]]. אמת זאת.',
+    options: [
+      'נכון — [[3,1],[5,2]]·[[2,−1],[−5,3]] = [[6−5, −3+3],[10−10, −5+6]] = I ✓',
+      'לא נכון — הסימנים בשורה השנייה צריכים להיות חיוביים',
+      'לא נכון — צריך לחלק ב-det(A) לפני הכפל',
+      'לא ניתן לאמת בלי לחשב det(A)',
+    ],
+    correctAnswer: 0,
+    explanation: 'A·A⁻¹: שורה 1×עמודה 1: 3·2+1·(−5)=1. שורה 1×עמודה 2: 3·(−1)+1·3=0. שורה 2×עמודה 1: 5·2+2·(−5)=0. שורה 2×עמודה 2: 5·(−1)+2·3=1. = [[1,0],[0,1]] ✓',
+    wrongAnswerFeedback: {
+      1: 'לא צריך לחלק ב-det בנפרד — אימות נעשה ע"י כפל ישיר. כאן det(A)=3·2−1·5=1 אז זה יוצא נקי.',
+      2: 'אימות פשוט: חשב A·A⁻¹ ובדוק שמתקבל I. לא צריך שום דבר נוסף.',
+      3: 'המספרים נכונים לחלוטין.',
+    },
+    commonMistakeTag: 'אימות הופכית: חשב A·A⁻¹ ובדוק ש-= I',
+  },
+
+  {
+    id: 'q202',
+    lessonId: 'invertible-intro',
+    topic: 'הפיכות דורשת מטריצה ריבועית',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'האם מטריצה לא-ריבועית (כגון 2×3) יכולה להיות הפיכה?',
+    options: [
+      'לא — הפיכות מוגדרת רק למטריצות ריבועיות',
+      'כן — אם rank מלא',
+      'כן — אם יש פיבוט בכל שורה',
+      'תלוי בגודל המטריצה הספציפי',
+    ],
+    correctAnswer: 0,
+    explanation: 'A⁻¹ מוגדרת ע"י A⁻¹A = AA⁻¹ = I. אם A היא m×n עם m≠n, אז A⁻¹A ו-AA⁻¹ הן מטריצות בגדלים שונים — אי-אפשר ששתיהן יהיו I. הפיכות מוגדרת אך ורק לריבועיות.',
+    wrongAnswerFeedback: {
+      1: 'מטריצה 2×3 עם rank מלא (rank=2) יש לה פסאודו-הופכי, אבל לא הופכי אמיתי.',
+      2: 'פיבוט בכל שורה = T על, אבל לא הפיכות. לא-ריבועית לא יכולה להיות הפיכה.',
+      3: 'גודל לא משנה כאן — כל מטריצה לא-ריבועית לא יכולה להיות הפיכה.',
+    },
+    commonMistakeTag: 'הפיכות: רק מטריצות ריבועיות',
+  },
+
+  {
+    id: 'q203',
+    lessonId: 'invertible-intro',
+    topic: 'טעות: A⁻¹ כ-1/aᵢⱼ',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"A = [[2,1],[0,3]].
+A⁻¹ = [[1/2, 1],[0, 1/3]] כי (A⁻¹)ᵢⱼ = 1/aᵢⱼ."`,
+    options: [
+      'A⁻¹ ≠ 1/aᵢⱼ. הנכון: [[1/2,−1/6],[0,1/3]]. אימות: A·[[1/2,1],[0,1/3]] = [[1,2+1/3],[0,1]] ≠ I',
+      'נכון — כך מוצאים הופכית למטריצה משולשת',
+      'הטעות: צריך לחלק כל אחד ב-det(A)',
+      'הטעות: האיבר (1,2) צריך להיות 0, לא 1',
+    ],
+    correctAnswer: 0,
+    explanation: 'בדיקה: [[2,1],[0,3]]·[[1/2,1],[0,1/3]] = [[1, 2+1/3],[0,1]] ≠ I. A⁻¹ הנכונה מ-[A|I]: A⁻¹ = [[1/2,−1/6],[0,1/3]]. הנוסחה 1/aᵢⱼ לא עובדת בכלל (רק לאלכסוניות).',
+    wrongAnswerFeedback: {
+      1: 'לא עובד גם למשולשות בכלל. לדוגמה: [[1/2,0],[0,1/3]] נכון רק לאלכסוניות (ב=0).',
+      2: 'חלוקה ב-det נכנסת לנוסחה 1/(ad-bc)·[[d,-b],[-c,a]], לא לאיברים בנפרד.',
+      3: '[[1/2,0],[0,1/3]] גם שגויה. צריך [A|I] → [I|A⁻¹].',
+    },
+    commonMistakeTag: '(A⁻¹)ᵢⱼ ≠ 1/aᵢⱼ — שגיאה נפוצה מאוד',
+  },
+
+  {
+    id: 'q204',
+    lessonId: 'invertible-intro',
+    topic: '(AB)⁻¹ = B⁻¹A⁻¹',
+    difficulty: 3,
+    type: 'conceptual',
+    question: 'A ו-B שתיהן מטריצות ריבועיות הפיכות. מהו (AB)⁻¹?',
+    options: [
+      'B⁻¹A⁻¹ — הסדר מתהפך',
+      'A⁻¹B⁻¹ — כמו הסדר המקורי',
+      'B⁻¹A⁻¹ = A⁻¹B⁻¹ — זה אותו הדבר',
+      '(AB)⁻¹ לא מוגדר גם כשA,B הפיכות',
+    ],
+    correctAnswer: 0,
+    explanation: 'הוכחה: (AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AIA⁻¹ = AA⁻¹ = I. הסדר מתהפך! כמו הלבשה: נועל נעליים אחרי גרביים → פושט גרביים לפני נעליים.',
+    wrongAnswerFeedback: {
+      1: 'A⁻¹B⁻¹ שגויה בכלל (אלא אם A,B מתחלפות). (AB)(A⁻¹B⁻¹) = A(BA⁻¹)B⁻¹ ≠ I בכלל.',
+      2: 'בכלל לא — B⁻¹A⁻¹ ≠ A⁻¹B⁻¹ בכלל. כפל מטריצות לא מתחלף.',
+      3: '(AB) הפיכה כאשר A,B הפיכות, ו-(AB)⁻¹ = B⁻¹A⁻¹.',
+    },
+    commonMistakeTag: '(AB)⁻¹ = B⁻¹A⁻¹ — הסדר מתהפך',
+  },
+
+  // שיעור 2: איך מוצאים מטריצה הופכית? (q205–q210)
+  {
+    id: 'q205',
+    lessonId: 'finding-inverse',
+    topic: 'דירוג [A|I]',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'מה קורה ל-[A|I] לאחר דירוג עד RREF כשA הפיכה?',
+    options: [
+      'הצד השמאלי הופך ל-I, הצד הימני הופך ל-A⁻¹',
+      'הצד השמאלי הופך ל-A⁻¹, הצד הימני ל-I',
+      'I שבצד ימין נשארת ללא שינוי',
+      '[A|I] → [A⁻¹|A]',
+    ],
+    correctAnswer: 0,
+    explanation: '[A|I] → [I|A⁻¹]. לוקחים את הצד הימני לאחר הדירוג — זהו A⁻¹. הצד השמאלי הוא I שמאשרת שהדירוג הצליח.',
+    wrongAnswerFeedback: {
+      1: 'הצד השמאלי מדורג ל-I (לא ל-A⁻¹). A⁻¹ נמצאת בצד הימני.',
+      2: 'I בצד ימין משתנה בכל פעולת שורה — היא לא נשארת I. לבסוף היא הופכת ל-A⁻¹.',
+      3: '[A⁻¹|A] לא הגיוני — A⁻¹ עוד לא ידועה לפני הדירוג.',
+    },
+    commonMistakeTag: '[A|I] → [I|A⁻¹]: A⁻¹ בצד ימין',
+  },
+
+  {
+    id: 'q206',
+    lessonId: 'finding-inverse',
+    topic: 'קריאת A⁻¹ מדירוג',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'לאחר דירוג: [[1,2|1,0],[3,7|0,1]] → [[1,0|7,−2],[0,1|−3,1]]. מהו האיבר (1,1) של A⁻¹?',
+    unit: '',
+    correctAnswer: 7,
+    explanation: 'הצד הימני לאחר הדירוג הוא A⁻¹ = [[7,−2],[−3,1]]. האיבר (1,1) — שורה 1, עמודה 1 — הוא 7.',
+    commonMistakeTag: 'A⁻¹ נקראת מהצד הימני של [I|A⁻¹]',
+  },
+
+  {
+    id: 'q207',
+    lessonId: 'finding-inverse',
+    topic: 'שורת אפסים = לא הפיכה',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'בדירוג [A|I], הופיעה שורת אפסים בצד השמאלי לפני הגיע ל-I. מה המסקנה?',
+    options: [
+      'A אינה הפיכה — לא ניתן להמשיך',
+      'צריך להמשיך לדרג בצד הימני',
+      'A⁻¹ היא מטריצת האפסים',
+      'זה תקין, ממשיכים לשלב הבא',
+    ],
+    correctAnswer: 0,
+    explanation: 'שורת אפסים בצד שמאל = שורת אפסים ב-REF(A) = rank(A)<n = A לא הפיכה. לא ניתן להמשיך — A⁻¹ לא קיימת.',
+    wrongAnswerFeedback: {
+      1: 'הצד הימני לא יכול "לתקן" שורת אפסים בשמאל. rank(A)<n פוסל הפיכות בוודאות.',
+      2: 'מטריצת האפסים היא A⁻¹ רק כשA=I? לא — A⁻¹ פשוט לא קיימת.',
+      3: 'שורת אפסים בצד שמאל = דגל אדום. A לא הפיכה.',
+    },
+    commonMistakeTag: 'שורת אפסים ב-A → A לא הפיכה',
+  },
+
+  {
+    id: 'q208',
+    lessonId: 'finding-inverse',
+    topic: 'נוסחת הופכית 2×2',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'מצא A⁻¹ עבור A = [[2,0],[0,5]] ע"י נוסחת 2×2.',
+    options: [
+      '[[1/2, 0],[0, 1/5]]',
+      '[[5,0],[0,2]]',
+      '[[1/5, 0],[0, 1/2]]',
+      '[[2,0],[0,5]] — A הפוכה לעצמה',
+    ],
+    correctAnswer: 0,
+    explanation: 'det = 2·5−0·0 = 10. A⁻¹ = 1/10·[[5,0],[0,2]] = [[1/2,0],[0,1/5]]. אימות: [[2,0],[0,5]]·[[1/2,0],[0,1/5]] = [[1,0],[0,1]] ✓',
+    wrongAnswerFeedback: {
+      1: '[[5,0],[0,2]] = det(A)·A⁻¹, לא A⁻¹. צריך לחלק ב-det=10.',
+      2: '[[1/5,0],[0,1/2]]: בלבול בין שתי האלמנטים. עבור [[a,0],[0,d]]⁻¹ = [[1/a,0],[0,1/d]].',
+      3: 'A הפוכה לעצמה רק אם A²=I, כמו I עצמה או מטריצות שיקוף. לא כאן.',
+    },
+    commonMistakeTag: 'A=[[a,b],[c,d]]: A⁻¹=1/(ad-bc)·[[d,-b],[-c,a]]',
+  },
+
+  {
+    id: 'q209',
+    lessonId: 'finding-inverse',
+    topic: 'טעות: לקחת צד שמאלי כ-A⁻¹',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"דירגתי [A|I] וקיבלתי:
+[[1,0 | 7,−2],
+ [0,1 | −3, 1]]
+לקחתי את הצד השמאלי [[1,0],[0,1]] = I כ-A⁻¹."`,
+    options: [
+      'A⁻¹ היא הצד הימני = [[7,−2],[−3,1]], לא הצד השמאלי I',
+      'נכון — I = A⁻¹ כי A·I = A',
+      'צריך לדרג עוד',
+      'המטריצה המורחבת בנויה שגוי',
+    ],
+    correctAnswer: 0,
+    explanation: '[A|I] → [I|A⁻¹]: הצד השמאלי I הוא האישור שA הפיכה. A⁻¹ היא הצד הימני [[7,−2],[−3,1]]. הסטודנט לקח את I במקום A⁻¹.',
+    wrongAnswerFeedback: {
+      1: 'A·I = A ≠ I בכלל. I היא הזהות — A⁻¹ מאז שונה ממנה.',
+      2: 'RREF הושגה — הדירוג שלם. הבעיה היא בקריאת התוצאה.',
+      3: 'המטריצה נכונה. הטעות: לקח I (שמאל) במקום A⁻¹ (ימין).',
+    },
+    commonMistakeTag: 'A⁻¹ בצד ימין, I בצד שמאל — לא להפוך',
+  },
+
+  {
+    id: 'q210',
+    lessonId: 'finding-inverse',
+    topic: 'אימות הופכית 2×2 בנוסחה',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'A = [[1,3],[2,7]]. נטען ש-A⁻¹ = [[7,−3],[−2,1]]. מה נכון?',
+    options: [
+      'נכון — det(A)=7−6=1, לכן A⁻¹=1/1·[[7,−3],[−2,1]] ✓',
+      'לא נכון — צריך לחלק ב-det(A) שהוא 10',
+      'לא נכון — הסדר של עמודות שגוי',
+      'לא נכון — הסימנים צריכים להיות הפוכים',
+    ],
+    correctAnswer: 0,
+    explanation: 'det(A)=1·7−3·2=1. A⁻¹=1/1·[[7,−3],[−2,1]]. אימות: [[1,3],[2,7]]·[[7,−3],[−2,1]]= [[7−6,−3+3],[14−14,−6+7]] = [[1,0],[0,1]] ✓',
+    wrongAnswerFeedback: {
+      1: 'det(A)=7−6=1, לא 10. אין לחלק — כבר חולק ב-1.',
+      2: 'לנוסחה [[a,b],[c,d]]⁻¹=1/det·[[d,−b],[−c,a]]: d=7,−b=−3,−c=−2,a=1. נכון.',
+      3: 'הסימנים של [[7,−3],[−2,1]] נכונים בדיוק.',
+    },
+    commonMistakeTag: 'נוסחת 2×2: לא לשכוח את det בהכנה',
+  },
+
+  // שיעור 3: תנאים שקולים להפיכות (q211–q216)
+  {
+    id: 'q211',
+    lessonId: 'invertibility-conditions',
+    topic: 'rank מלא ↔ הפיכות',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'A מטריצה n×n. מתי A הפיכה?',
+    options: [
+      'כשrank(A) = n',
+      'כשrank(A) = 0',
+      'כשrank(A) < n',
+      'תמיד, אם A ריבועית',
+    ],
+    correctAnswer: 0,
+    explanation: 'A n×n הפיכה ⟺ rank(A)=n. rank<n → שורת אפסים בדירוג → Null≠{0} → לא הפיכה. לא כל ריבועית הפיכה.',
+    wrongAnswerFeedback: {
+      1: 'rank=0 ⟺ A=0 (מטריצת אפסים). הנגדי של הפיכות.',
+      2: 'rank<n פוסל הפיכות. צריך בדיוק rank=n.',
+      3: '[[1,2],[2,4]] ריבועית אבל לא הפיכה (rank=1<2).',
+    },
+    commonMistakeTag: 'A n×n הפיכה ⟺ rank(A)=n',
+  },
+
+  {
+    id: 'q212',
+    lessonId: 'invertibility-conditions',
+    topic: 'הפיכות וגרעין',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'אם A מטריצה n×n הפיכה, מהו Null(A)?',
+    options: [
+      '{0} — הגרעין מכיל רק הוקטור האפסי',
+      'Rⁿ כולו',
+      'Col(A)',
+      'תלוי בגודל n',
+    ],
+    correctAnswer: 0,
+    explanation: 'A הפיכה ↔ rank=n ↔ nullity=0 ↔ Null(A)={0}. הגרעין "ריק" מלבד 0 — הוכחה שT חד-חד-ערכית.',
+    wrongAnswerFeedback: {
+      1: 'Null=Rⁿ ⟺ A=0. ההיפך של הפיכה.',
+      2: 'Null(A) ⊆ Rⁿ, Col(A) ⊆ Rᵐ — מרחבים שונים. ו-Null≠Col בכלל.',
+      3: 'A הפיכה → Null={0} תמיד, ללא תלות ב-n.',
+    },
+    commonMistakeTag: 'A הפיכה ⟺ Null(A)={0}',
+  },
+
+  {
+    id: 'q213',
+    lessonId: 'invertibility-conditions',
+    topic: 'rank<n → לא הפיכה',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A מטריצה 3×3 עם 2 עמודות פיבוט בלבד. האם A הפיכה?',
+    options: [
+      'לא — rank(A)=2 < n=3, אז A אינה הפיכה',
+      'כן — יש פיבוטים, זה מספיק',
+      'לא ניתן לקבוע ללא מידע נוסף',
+      'כן — העמודה השלישית יכולה להיות צירוף של האחרות',
+    ],
+    correctAnswer: 0,
+    explanation: 'rank(A)=2 < n=3 → nullity=1 → Null(A)≠{0} → A לא הפיכה. הפיכות דורשת בדיוק n פיבוטים, לא פחות.',
+    wrongAnswerFeedback: {
+      1: 'צריך n פיבוטים — לא "כמה שיש". 2 פיבוטים ב-3×3 = לא הפיכה.',
+      2: 'rank ידוע = 2. זה מספיק לקביעה: לא הפיכה.',
+      3: 'אם עמודה 3 צירוף של האחרות → תלות → rank<3 → לא הפיכה. זה אישור, לא חריג.',
+    },
+    commonMistakeTag: 'n×n הפיכה ⟺ n פיבוטים בדיוק',
+  },
+
+  {
+    id: 'q214',
+    lessonId: 'invertibility-conditions',
+    topic: 'הפיכות ופתרון יחיד',
+    difficulty: 2,
+    type: 'conceptual',
+    question: 'A מטריצה n×n הפיכה. מה ניתן לומר על Ax=b לכל b∈Rⁿ?',
+    options: [
+      'יש פתרון יחיד: x = A⁻¹b',
+      'אין פתרון — A הפיכה לא מבטיחה עקיבות',
+      'יש אינסוף פתרונות — כי rank=n',
+      'תלוי ב-b הספציפי',
+    ],
+    correctAnswer: 0,
+    explanation: 'A הפיכה → rank=n → Col(A)=Rⁿ → Ax=b עקיבה לכל b. rank=n → nullity=0 → פתרון יחיד. x = A⁻¹b.',
+    wrongAnswerFeedback: {
+      1: 'A הפיכה → rank=n=m → Col(A)=Rⁿ → עקיבה לכל b. תמיד יש פתרון.',
+      2: 'אינסוף פתרונות ↔ nullity>0 ↔ rank<n. A הפיכה ↔ rank=n ↔ פתרון יחיד.',
+      3: 'A הפיכה → x=A⁻¹b בדיוק, לכל b. לא תלוי ב-b.',
+    },
+    commonMistakeTag: 'A הפיכה → פתרון יחיד לכל Ax=b',
+  },
+
+  {
+    id: 'q215',
+    lessonId: 'invertibility-conditions',
+    topic: 'טעות: rank<n עדיין יכולה להיות הפיכה',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"A מטריצה 3×3 עם rank(A) = 2.
+ייתכן שA עדיין הפיכה, כי אולי
+שורה אחת היא צירוף של האחרות
+אבל זה לא בהכרח פוסל הפיכות."`,
+    options: [
+      'rank < n פוסל הפיכות בוודאות. rank=2<n=3 → nullity=1 → Null≠{0} → A לא הפיכה, ללא יוצאים מן הכלל',
+      'נכון — ייתכן שA עדיין הפיכה עם rank=2',
+      'תלוי אם שורה היא צירוף — צריך לחשב det',
+      'צריך לבדוק גם את det(A) לפני שמסיקים',
+    ],
+    correctAnswer: 0,
+    explanation: 'rank(A)=2 < n=3 → nullity=1 → Null(A)≠{0} → קיים x≠0 עם Ax=0 → T לא חד-חד-ערכית → A לא הפיכה. אין יוצאים. rank<n = לא הפיכה, סוף פסוק.',
+    wrongAnswerFeedback: {
+      1: 'rank<n מבטיח Null≠{0}, וזה בדיוק שקול ל"לא הפיכה". det(A)=0 בוודאות כאשר rank<n.',
+      2: 'det(A)=0 בוודאות כאשר rank<n. לא צריך לחשב — הוא 0.',
+      3: 'det(A) = 0 תמיד כשrank<n. הבדיקה מיותרת.',
+    },
+    commonMistakeTag: 'rank<n ↔ לא הפיכה — אין יוצאים',
+  },
+
+  {
+    id: 'q216',
+    lessonId: 'invertibility-conditions',
+    topic: 'תנאים שקולים — לא הפיכה',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'A מטריצה n×n. איזה מהתנאים הבאים שקול ל-"A אינה הפיכה"?',
+    options: [
+      'det(A) = 0',
+      'rank(A) = n',
+      'Null(A) = {0}',
+      'עמודות A בלתי תלויות לינארית',
+    ],
+    correctAnswer: 0,
+    explanation: 'det(A)=0 ⟺ A לא הפיכה. שלושת האחרים שקולים לכך שA הפיכה: rank=n → הפיכה. Null={0} → הפיכה. עמודות בלתי תלויות → rank=n → הפיכה.',
+    wrongAnswerFeedback: {
+      1: 'rank=n ↔ A הפיכה. ההיפך של לא-הפיכה.',
+      2: 'Null={0} ↔ A הפיכה. ההיפך.',
+      3: 'עמודות בלתי תלויות ↔ rank=n ↔ A הפיכה. ההיפך.',
+    },
+    commonMistakeTag: 'det=0 ⟺ לא הפיכה; det≠0 ⟺ הפיכה',
+  },
+
+  // שיעור 4: מהי דטרמיננטה? (q217–q222)
+  {
+    id: 'q217',
+    lessonId: 'determinant-intro',
+    topic: 'חישוב det 2×2',
+    difficulty: 1,
+    type: 'numeric-answer',
+    question: 'חשב: det([[3,1],[2,4]])',
+    unit: '',
+    correctAnswer: 10,
+    explanation: 'det([[3,1],[2,4]]) = 3·4 − 1·2 = 12 − 2 = 10. נוסחה: det([[a,b],[c,d]]) = ad−bc.',
+    commonMistakeTag: 'det 2×2 = ad−bc',
+  },
+
+  {
+    id: 'q218',
+    lessonId: 'determinant-intro',
+    topic: 'det של מטריצת זהות',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'מהו det(I₂) עבור I₂ = [[1,0],[0,1]]?',
+    options: ['1', '0', '2', '−1'],
+    correctAnswer: 0,
+    explanation: 'det([[1,0],[0,1]]) = 1·1−0·0 = 1. כלל כללי: det(I) = 1 תמיד. I מייצגת הטרנספורמציה ללא שינוי — שטח/נפח נשמר (פקטור 1).',
+    wrongAnswerFeedback: {
+      1: 'det=0 פירושו שורות תלויות. I ריבועית עם שורות בלתי תלויות.',
+      2: 'det=2: הגיוני לחשוב כי יש 2 שורות, אבל det=1·1−0·0=1.',
+      3: 'det=−1 קורה בשיקופים (כמו [[-1,0],[0,1]]). I ללא שינוי, det=1.',
+    },
+    commonMistakeTag: 'det(I) = 1 תמיד',
+  },
+
+  {
+    id: 'q219',
+    lessonId: 'determinant-intro',
+    topic: 'חישוב det 2×2',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'חשב: det([[4,2],[2,3]])',
+    unit: '',
+    correctAnswer: 8,
+    explanation: 'det([[4,2],[2,3]]) = 4·3 − 2·2 = 12 − 4 = 8.',
+    commonMistakeTag: 'det=ad-bc: לא לבלבל עם ad+bc',
+  },
+
+  {
+    id: 'q220',
+    lessonId: 'determinant-intro',
+    topic: 'משמעות גיאומטרית של det',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: '|det(A)| = 3 עבור A מטריצה 2×2. מה המשמעות הגיאומטרית?',
+    options: [
+      'T(x)=Ax מגדילה שטח פי 3',
+      'T(x)=Ax מגדילה שטח ב-3 יחידות',
+      'T(x)=Ax שולחת כל וקטור לאורך 3',
+      '|det|=3 אומר רק שA הפיכה, ללא משמעות גיאומטרית',
+    ],
+    correctAnswer: 0,
+    explanation: '|det(A)| הוא פקטור שינוי השטח של T. ריבוע יחידה (שטח 1) הופך לפרלוגרם עם שטח |det(A)|=3. det<0: כיוון מתהפך.',
+    wrongAnswerFeedback: {
+      1: '"מגדיל ב-3" (חיבור) שגוי. הכוונה "פי 3" (כפל). שטח מוכפל, לא מוגדל בקבוע.',
+      2: 'Det משפיע על כל הוקטורים לפי הפקטור |det|. לא רק על "אורך".',
+      3: 'det≠0 מבטיח הפיכות, אבל |det| גם מציין פקטור שינוי שטח — זוהי משמעות גיאומטרית.',
+    },
+    commonMistakeTag: '|det(A)| = פקטור שינוי שטח (כפל, לא חיבור)',
+  },
+
+  {
+    id: 'q221',
+    lessonId: 'determinant-intro',
+    topic: 'טעות: det = חיבור האלכסון',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"A = [[5,3],[2,4]].
+det(A) = a₁₁ + a₂₂ = 5 + 4 = 9."`,
+    options: [
+      'det = a₁₁·a₂₂ − a₁₂·a₂₁ = 5·4 − 3·2 = 20 − 6 = 14. הנוסחה היא כפל ומינוס, לא חיבור',
+      'det = 5·4 + 3·2 = 26',
+      'אין טעות — det = 9',
+      'det = a₁₁·a₂₂ = 20 (שכח את הגורם השני)',
+    ],
+    correctAnswer: 0,
+    explanation: 'det([[a,b],[c,d]]) = ad−bc = 5·4−3·2 = 14. החיבור a+d (עקבה / trace) הוא מושג אחר — לא det.',
+    wrongAnswerFeedback: {
+      1: 'det = ad+bc היה שגוי גם כן. הנוסחה הנכונה: ad−bc (מינוס!).',
+      2: 'det = ad−bc = 14. לא 9.',
+      3: 'det = ad−bc. לא רק ad. חייבים לחסר את bc.',
+    },
+    commonMistakeTag: 'det = ad−bc, לא ad+bc ולא a+d',
+  },
+
+  {
+    id: 'q222',
+    lessonId: 'determinant-intro',
+    topic: 'det של מטריצה משולשת תחתונה',
+    difficulty: 3,
+    type: 'numeric-answer',
+    question: 'חשב: det([[2,0,0],[1,3,0],[4,2,5]])',
+    unit: '',
+    correctAnswer: 30,
+    explanation: 'מטריצה משולשת תחתונה — det = מכפלת האלכסון = 2·3·5 = 30. ניתן לאמת בפיתוח לאורך שורה 1: 2·det([[3,0],[2,5]])−0+0 = 2·15 = 30.',
+    commonMistakeTag: 'det מטריצה משולשת = מכפלת האלכסון',
+  },
+
+  // שיעור 5: דטרמיננטה והפיכות (q223–q228)
+  {
+    id: 'q223',
+    lessonId: 'determinant-invertibility',
+    topic: 'det=0 → לא הפיכה',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'det(A) = 0. מה ניתן להסיק?',
+    options: [
+      'A אינה הפיכה',
+      'A הפיכה',
+      'A היא מטריצת האפסים',
+      'לא ניתן להסיק דבר ללא מידע נוסף',
+    ],
+    correctAnswer: 0,
+    explanation: 'det(A)=0 ⟺ A לא הפיכה. זהו הקשר הישיר: det(A)≠0 ↔ הפיכה, det(A)=0 ↔ לא הפיכה.',
+    wrongAnswerFeedback: {
+      1: 'det=0 הוא בדיוק התנאי ל"לא הפיכה". ההפך.',
+      2: 'A=0 ⟹ det=0, אבל det=0 לא מחייב A=0. לדוגמה: [[1,1],[1,1]] ≠ 0 אבל det=0.',
+      3: 'det=0 נותן מסקנה חד-משמעית: A לא הפיכה.',
+    },
+    commonMistakeTag: 'det=0 ⟺ לא הפיכה',
+  },
+
+  {
+    id: 'q224',
+    lessonId: 'determinant-invertibility',
+    topic: 'שורות זהות → det=0',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A מטריצה 2×2 שבה שתי השורות זהות. מהו det(A)?',
+    options: [
+      '0 — שורות זהות גורמות לתלות לינארית ולכן det=0',
+      '1',
+      '2',
+      'תלוי באיברים הספציפיים',
+    ],
+    correctAnswer: 0,
+    explanation: 'שורות זהות → עמודות תלויות (ניתן לראות ע"י R2←R2-R1 → שורת אפסים) → rank<2 → det=0. בדיקה ישירה: אם שורה 1 = [a,b] = שורה 2, det = a·b−b·a = 0.',
+    wrongAnswerFeedback: {
+      1: 'det=1 נכון ל-I₂. כאן שורות זהות → det=0.',
+      2: 'det=2 לא קשור לשתי השורות הזהות.',
+      3: 'שורות זהות → det=0 תמיד, ללא תלות באיברים.',
+    },
+    commonMistakeTag: 'שורות תלויות → det=0',
+  },
+
+  {
+    id: 'q225',
+    lessonId: 'determinant-invertibility',
+    topic: 'מציאת k כך ש-det=0',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'A = [[1,2],[k,6]]. מצא k כך ש-det(A) = 0.',
+    unit: '',
+    correctAnswer: 3,
+    explanation: 'det([[1,2],[k,6]]) = 1·6 − 2·k = 6 − 2k = 0 → k = 3. כשk=3: עמודה 2 = (2,6) = 2·(1,3) = 2·עמודה 1 — תלות, כצפוי.',
+    commonMistakeTag: 'det=0: פתור משוואה ב-k',
+  },
+
+  {
+    id: 'q226',
+    lessonId: 'determinant-invertibility',
+    topic: 'det≠0 → תוצאות',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'det(A) = 5 עבור A מטריצה 3×3. מה נכון?',
+    options: [
+      'A הפיכה, ול-Ax=b יש פתרון יחיד לכל b',
+      'A לא הפיכה',
+      'rank(A) < 3',
+      'det(A⁻¹) = 5',
+    ],
+    correctAnswer: 0,
+    explanation: 'det=5≠0 → A הפיכה → rank=3=n → Ax=b פתרון יחיד לכל b. בנוסף: det(A⁻¹) = 1/det(A) = 1/5.',
+    wrongAnswerFeedback: {
+      1: 'det≠0 ↔ A הפיכה. ההיפך.',
+      2: 'A הפיכה → rank=n=3. לא rank<3.',
+      3: 'det(A⁻¹) = 1/5, לא 5. תכונה: det(A)·det(A⁻¹) = det(I) = 1.',
+    },
+    commonMistakeTag: 'det≠0 ↔ הפיכה ↔ פתרון יחיד',
+  },
+
+  {
+    id: 'q227',
+    lessonId: 'determinant-invertibility',
+    topic: 'טעות: det=0 → Ax=0 טריוויאלי',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"A מטריצה 2×2 עם det(A) = 0.
+מסקנה: Ax=0 מאפשרת רק את
+הפתרון הטריוויאלי x=0."`,
+    options: [
+      'det(A)=0 → A לא הפיכה → Null(A)≠{0} → יש פתרון לא-טריוויאלי ל-Ax=0',
+      'הנכון: Ax=0 מאפשרת רק x=0 כשdet=0',
+      'לא ניתן להסיק דבר על Ax=0 מ-det בלבד',
+      'אין טעות — הסקנה נכונה',
+    ],
+    correctAnswer: 0,
+    explanation: 'det(A)=0 → לא הפיכה → rank<n → nullity>0 → Null(A)≠{0} → קיים x≠0 עם Ax=0. זוהי התכונה המרכזית: A לא הפיכה ↔ Ax=0 מאפשרת פתרון לא-טריוויאלי.',
+    wrongAnswerFeedback: {
+      1: 'det=0 נותן מסקנה חד-משמעית: Null≠{0}. לא "לא ניתן להסיק".',
+      2: 'det=0 → רק פתרון x=0 רק כשA הפיכה (det≠0). כאן det=0 → ההיפך.',
+      3: 'det(A)=0 → Null(A)≠{0} → x≠0 עם Ax=0. הסקנה שגויה.',
+    },
+    commonMistakeTag: 'det=0 → פתרון לא-טריוויאלי ל-Ax=0',
+  },
+
+  {
+    id: 'q228',
+    lessonId: 'determinant-invertibility',
+    topic: 'אינטגרציה: עמודות בלתי תלויות → כל מה שנובע',
+    difficulty: 4,
+    type: 'multiple-choice',
+    question: 'A מטריצה 3×3 ועמודותיה בלתי תלויות לינארית. מה ניתן להסיק?',
+    options: [
+      'det(A)≠0, A הפיכה, ול-Ax=b יש פתרון יחיד לכל b',
+      'det(A)=0, A לא הפיכה',
+      'rank(A) < 3',
+      'לא ניתן להסיק על הפיכות ללא חישוב det',
+    ],
+    correctAnswer: 0,
+    explanation: 'עמודות בלתי תלויות (3 עמודות ב-R³) → rank=3=n → A הפיכה → det≠0 → Ax=b פתרון יחיד לכל b. כל התנאים שקולים — אחד מספיק.',
+    wrongAnswerFeedback: {
+      1: 'עמודות בלתי תלויות → rank=n → det≠0 → הפיכה. ההיפך.',
+      2: 'עמודות בלתי תלויות → rank=n=3. לא rank<3.',
+      3: 'אחד מהתנאים השקולים מספיק. עמודות בלתי תלויות = הפיכה = det≠0.',
+    },
+    commonMistakeTag: 'כל התנאים שקולים: rank=n ↔ det≠0 ↔ הפיכה ↔ עמודות בלתי תלויות',
+  },
 ]
 
 export default questions
