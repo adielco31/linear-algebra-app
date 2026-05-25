@@ -37,6 +37,13 @@ const LESSON_FORMULA = {
   'subspace-test':      String.raw`\mathbf{0}\notin W\;\Rightarrow\;W\text{ לא תת-מרחב} \qquad \exists v\in W,c<0:\;cv\notin W\;\Rightarrow\;W\text{ לא תת-מרחב}`,
   'null-col-space':     String.raw`\mathrm{Null}(A)=\{x\in\mathbb{R}^n\mid Ax=\mathbf{0}\}\qquad \mathrm{Col}(A)=\mathrm{Span}\{a_1,\ldots,a_n\}`,
   'row-space-summary':  String.raw`\underbrace{\mathrm{rank}(A)}_{\dim\mathrm{Col}=\dim\mathrm{Row}}+\underbrace{\mathrm{nullity}(A)}_{\dim\mathrm{Null}}=n`,
+
+  // Module 6 — Linear Transformations
+  'linear-transform-intro': String.raw`T(c_1u+c_2v)=c_1T(u)+c_2T(v)\qquad T(\mathbf{0})=\mathbf{0}`,
+  'matrix-as-transform':    String.raw`T(\mathbf{x})=A\mathbf{x},\quad A=\bigl[T(e_1)\mid T(e_2)\mid\cdots\mid T(e_n)\bigr]`,
+  'geometric-transforms':   String.raw`\underbrace{\begin{pmatrix}k&0\\0&k\end{pmatrix}}_{\text{מתיחה }k}\quad\underbrace{\begin{pmatrix}1&0\\0&-1\end{pmatrix}}_{\text{שיקוף }x}\quad\underbrace{\begin{pmatrix}1&0\\0&0\end{pmatrix}}_{\text{הטלה }x}`,
+  'kernel-image':           String.raw`\ker(T)=\mathrm{Null}(A)\quad\mathrm{Im}(T)=\mathrm{Col}(A)\quad\dim\ker+\dim\mathrm{Im}=n`,
+  'injective-surjective':   String.raw`\underbrace{\ker(T)=\{\mathbf{0}\}}_{\text{חד-חד-ערכית}}\Longleftrightarrow\mathrm{rank}=n\qquad\underbrace{\mathrm{Im}(T)=\mathbb{R}^m}_{\text{על}}\Longleftrightarrow\mathrm{rank}=m`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────

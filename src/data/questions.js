@@ -4780,6 +4780,698 @@ nullity = 1"`,
     },
     commonMistakeTag: 'rank, nullity, Col — שלושתם יחד',
   },
+
+  // ─────────────────────────────────────────────────────
+  // Module 6 — טרנספורמציות לינאריות
+  // ─────────────────────────────────────────────────────
+
+  // שיעור 1: מהי טרנספורמציה לינארית? (q169–q174)
+  {
+    id: 'q169',
+    lessonId: 'linear-transform-intro',
+    topic: 'תנאי הלינאריות',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'איזו מהתכונות הבאות מאפיינת טרנספורמציה לינארית?',
+    options: [
+      'T(u+v) = T(u)+T(v) ו-T(cv) = cT(v) לכל u,v ו-c',
+      'T היא תמיד חד-חד-ערכית',
+      'T שולחת כל וקטור לאפס',
+      'T מוגדרת רק מ-R² ל-R²',
+    ],
+    correctAnswer: 0,
+    explanation: 'שני התנאים הנדרשים: שמירה על חיבור (T(u+v)=T(u)+T(v)) ושמירה על כפל בסקאלר (T(cv)=cT(v)). שניהם יחד שקולים ל-T(cu+dv)=cT(u)+dT(v).',
+    wrongAnswerFeedback: {
+      1: 'חד-חד-ערכיות היא תכונה נוספת שלא מגדירה לינאריות. יש טרנספורמציות לינאריות שאינן חד-חד-ערכיות.',
+      2: 'T(0)=0 תמיד, אבל T לא שולחת כל וקטור לאפס — רק את הגרעין.',
+      3: 'טרנספורמציות לינאריות קיימות בין כל Rⁿ ל-Rᵐ. לא רק R².',
+    },
+    commonMistakeTag: 'שני תנאי הלינאריות: חיבור + כפל סקאלר',
+  },
+
+  {
+    id: 'q170',
+    lessonId: 'linear-transform-intro',
+    topic: 'T(0) של טרנספורמציה לינארית',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'אם T: Rⁿ → Rᵐ היא טרנספורמציה לינארית, מהו T(0)?',
+    options: [
+      '0 — הוקטור האפסי ב-Rᵐ',
+      'לא ניתן לדעת ללא מידע נוסף',
+      'תלוי במטריצה המייצגת A',
+      'T(0) = 1',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(0) = T(0·v) = 0·T(v) = 0 תמיד. זוהי תוצאה ישירה מתנאי הכפל בסקאלר עם c=0. בדיקה: אם T(0)≠0 — T אינה לינארית.',
+    wrongAnswerFeedback: {
+      1: 'מהתנאי T(cv)=cT(v) עם c=0: T(0)=0·T(v)=0. זה תמיד נכון, לא תלוי ב-A.',
+      2: 'T(0)=0 תמיד. זה אחד הדברים הראשונים שבודקים.',
+      3: 'T(0) הוא וקטור, לא מספר. T(0)=0 — לא 1.',
+    },
+    commonMistakeTag: 'T(0)=0 — בדיקה מהירה ראשונה',
+  },
+
+  {
+    id: 'q171',
+    lessonId: 'linear-transform-intro',
+    topic: 'זיהוי אי-לינאריות — קבוע חיצוני',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'האם T(x, y) = (x+1, y) היא טרנספורמציה לינארית?',
+    options: [
+      'לא — T(0,0) = (1,0) ≠ (0,0), לכן T אינה לינארית',
+      'כן — היא שולחת כל זוג מספרים לזוג מספרים',
+      'כן — היא לינארית כי מדובר בפעולות חיבור',
+      'לא — צריך לבדוק גם T(cv) לפני שמסיקים',
+    ],
+    correctAnswer: 0,
+    explanation: 'בדיקה ראשונה: T(0,0) = (0+1,0) = (1,0) ≠ (0,0). לינארית חייבת T(0)=0. הקבוע +1 הוא הבעיה — הוא "מזיז" את הראשית וזה פוסל לינאריות.',
+    wrongAnswerFeedback: {
+      1: 'הכנסת כל קלט לא מספיקה — צריך לשמור על מבנה לינארי. +1 שובר אותו.',
+      2: 'חיבור הוא פעולה לינארית, אבל חיבור קבוע (לא משתנה) אינו. T(0)=1≠0 מספיק לפסול.',
+      3: 'T(0)=(1,0)≠0 — מספיק לפסול. לא צריך לבדוק יותר.',
+    },
+    commonMistakeTag: 'קבוע חיצוני פוסל לינאריות — T(0)≠0',
+  },
+
+  {
+    id: 'q172',
+    lessonId: 'linear-transform-intro',
+    topic: 'זיהוי אי-לינאריות — כפל משתנים',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'האם T(x, y) = (2x, x·y) היא טרנספורמציה לינארית?',
+    options: [
+      'לא — T(cv) = (2cx, cx·cy) = (2cx, c²xy) ≠ cT(x,y) = (2cx, cxy) עבור c≠1',
+      'כן — כי x מופיע בשני הרכיבים',
+      'כן — כי T(0,0) = (0,0)',
+      'לא — כי הרכיב הראשון לא מכיל y',
+    ],
+    correctAnswer: 0,
+    explanation: 'בדיקת T(cv): T(cx,cy) = (2cx, cx·cy) = (2cx, c²xy). אבל cT(x,y) = (2cx, cxy). כאשר c≠0,1: c²xy ≠ cxy. הכפל xy גורם לחזקה של c — שובר לינאריות.',
+    wrongAnswerFeedback: {
+      1: 'T(0)=0 נכון, אבל זה רק תנאי הכרחי. כאן T(cv)≠cT(v) — מספיק לפסול.',
+      2: 'T(0)=0 הכרחי אבל לא מספיק. כאן T(cv)≠cT(v).',
+      3: 'הרכיב הראשון 2x לינארי לחלוטין. הבעיה היא xy בשני הרכיב.',
+    },
+    commonMistakeTag: 'כפל משתנים (xy, x²) → לא לינארי',
+  },
+
+  {
+    id: 'q173',
+    lessonId: 'linear-transform-intro',
+    topic: 'טעות: c² ≠ c בבדיקת לינאריות',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"בדקתי T(x,y) = (x², 2y):
+T(cv) = ((cx)², 2cy) = (c²x², 2cy)
+c מופיע בכל הרכיבים → T לינארית."`,
+    options: [
+      'c² ≠ c — T(cv) = (c²x², 2cy) ≠ c(x², 2y) = cT(v). הגורם x² גורם לחזקה, לא לכפל',
+      'הבדיקה נכונה — T לינארית',
+      'צריך לבדוק גם T(u+v) לפני שמסיקים',
+      'T לינארית כי T(0,0) = (0,0)',
+    ],
+    correctAnswer: 0,
+    explanation: 'cT(v) = c(x²,2y) = (cx²,2cy). אבל T(cv) = ((cx)²,2cy) = (c²x²,2cy). c²x² ≠ cx² (בכלל כאשר c≠0,1). הנוכחות של c לבד לא מספיקה — צריך את אותה חזקה של c.',
+    wrongAnswerFeedback: {
+      1: 'T(0)=0 נכון, אבל לא מספיק. כאן T(cv)≠cT(v) בגלל c².',
+      2: 'T(u+v): (x₁+x₂)² ≠ x₁²+x₂² בכלל. כבר כאן היה אפשר לפסול.',
+      3: 'T(u+v) אכן נכשל גם כן, אבל הסיבה המוצגת לגבי cv שגויה ועדיין לא מזוהה.',
+    },
+    commonMistakeTag: 'c² ≠ c — בדיקת T(cv)=cT(v) דורשת חזקה נכונה',
+  },
+
+  {
+    id: 'q174',
+    lessonId: 'linear-transform-intro',
+    topic: 'חישוב T של צירוף לינארי',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'T היא לינארית. T(u) = (1,2) ו-T(v) = (3,0). מהו T(3u − 2v)?',
+    options: [
+      '(−3, 6)',
+      '(7, −4)',
+      '(12, 6)',
+      'לא ניתן לחשב ללא ידיעת T עצמה',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(3u−2v) = 3T(u)−2T(v) = 3(1,2)−2(3,0) = (3,6)−(6,0) = (−3,6). לינאריות מאפשרת "לפרק" כל צירוף לינארי.',
+    wrongAnswerFeedback: {
+      1: '(7,−4) = 3T(v)−2T(u) = 3(3,0)−2(1,2) — בלבול בין u ל-v.',
+      2: '(12,6) = 3T(u)+3T(v) — שימוש בחיבור במקום חיסור.',
+      3: 'בדיוק כאן מתגלה כוח הלינאריות: T(3u−2v)=3T(u)−2T(v). מספיק לדעת T(u) ו-T(v).',
+    },
+    commonMistakeTag: 'לינאריות: T(cu+dv) = cT(u)+dT(v)',
+  },
+
+  // שיעור 2: מטריצה כטרנספורמציה (q175–q180)
+  {
+    id: 'q175',
+    lessonId: 'matrix-as-transform',
+    topic: 'עמודות מטריצה = תמונות e₁, e₂',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'A = [[2,−1],[0,3]]. מהו T(e₁) = T(1,0)?',
+    options: [
+      '(2, 0) — עמודה 1 של A',
+      '(2, −1) — שורה 1 של A',
+      '(0, 3) — עמודה 2 של A',
+      '(−1, 3) — שורה 2 מוחלפת',
+    ],
+    correctAnswer: 0,
+    explanation: 'A·e₁ = A·[1;0] = עמודה 1 של A = [2;0] = (2,0). T(eⱼ) היא תמיד עמודה j של A. לא שורה j.',
+    wrongAnswerFeedback: {
+      1: '(2,−1) היא שורה 1 של A. T(e₁) = עמודה 1, לא שורה 1.',
+      2: '(0,3) = עמודה 2 = T(e₂). לא T(e₁).',
+      3: 'אין שורה מוחלפת. A·e₁ = עמודה 1 של A.',
+    },
+    commonMistakeTag: 'T(eⱼ) = עמודה j של A — לא שורה j',
+  },
+
+  {
+    id: 'q176',
+    lessonId: 'matrix-as-transform',
+    topic: 'בניית מטריצה מהגדרת T',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'T(x,y) = (2x, x+y). מהי המטריצה המייצגת של T?',
+    options: [
+      '[[2,0],[1,1]]',
+      '[[2,1],[0,1]]',
+      '[[0,2],[1,1]]',
+      '[[2,1],[1,0]]',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(1,0)=(2,1) → עמודה 1: [2;1]. T(0,1)=(0,1) → עמודה 2: [0;1]. A = [[2,0],[1,1]]. בדיקה: A·(x,y)=[2x,x+y] ✓',
+    wrongAnswerFeedback: {
+      1: '[[2,1],[0,1]]: עמודה 1 היא (2,0) ועמודה 2 היא (1,1). T(e₁)=(2,0)≠(2,1). בלבול בין עמודות לשורות.',
+      2: '[[0,2],[1,1]]: T(e₁) לפי זה הוא (0,1) — לא נכון.',
+      3: '[[2,1],[1,0]]: A·(x,y)=(2x+y, x) ≠ (2x, x+y).',
+    },
+    commonMistakeTag: 'עמודות A = T(e₁), T(e₂) — לא שורות',
+  },
+
+  {
+    id: 'q177',
+    lessonId: 'matrix-as-transform',
+    topic: 'חישוב T(v) = Av',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'A = [[1,2],[3,0]]. מהי הרכיב הראשון של T(1,2) = A·[1;2]?',
+    unit: '',
+    correctAnswer: 5,
+    explanation: 'A·[1;2]: שורה 1 × [1;2] = 1·1+2·2 = 1+4 = 5. (הרכיב השני: 3·1+0·2 = 3.) T(1,2) = (5,3).',
+    commonMistakeTag: 'כפל מטריצה בוקטור — שורה × עמודה',
+  },
+
+  {
+    id: 'q178',
+    lessonId: 'matrix-as-transform',
+    topic: 'זיהוי פעולה מהמטריצה',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A = [[1,0],[0,2]]. איזו פעולה מייצגת T(x)=Ax?',
+    options: [
+      'מתיחה בציר y בפקטור 2 (רכיב y מוכפל ב-2, x נשאר)',
+      'מתיחה אחידה בפקטור 2',
+      'שיקוף מציר x',
+      'הטלה על ציר y',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(x,y) = (x,2y). רכיב x נשאר, רכיב y מוכפל ב-2. זוהי מתיחה בציר y בפקטור 2. דוגמה: (3,1) → (3,2).',
+    wrongAnswerFeedback: {
+      1: 'מתיחה אחידה: A=[[2,0],[0,2]]. כאן רק y מוכפל, לא x.',
+      2: 'שיקוף מציר x: A=[[1,0],[0,−1]]. כאן 2 ולא −1.',
+      3: 'הטלה על y: A=[[0,0],[0,1]]. כאן x נשאר (לא מאופס).',
+    },
+    commonMistakeTag: 'מטריצה אלכסונית → מתיחה/כיווץ בצירים',
+  },
+
+  {
+    id: 'q179',
+    lessonId: 'matrix-as-transform',
+    topic: 'טעות: T(eⱼ) כשורה במקום עמודה',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"T(x,y) = (x−y, x+2y).
+T(1,0) = (1,1)  → שמתי כשורה 1: [1, 1]
+T(0,1) = (−1,2) → שמתי כשורה 2: [−1, 2]
+A = [[1,1],[−1,2]]"`,
+    options: [
+      'T(eⱼ) מהווה עמודה j של A, לא שורה j. המטריצה הנכונה: A = [[1,−1],[1,2]]',
+      'T(1,0) חושבה שגוי — צריך לקבל (−1,1)',
+      'T(0,1) חושבה שגוי — צריך לקבל (1,−2)',
+      'אין טעות — המטריצה נכונה',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(e₁)=(1,1) → עמודה 1: [1;1]. T(e₂)=(−1,2) → עמודה 2: [−1;2]. A = [[1,−1],[1,2]]. הסטודנט שם T(eⱼ) כשורות — שגיאה נפוצה מאוד.',
+    wrongAnswerFeedback: {
+      1: 'T(1,0) = (1−0, 1+0) = (1,1). נכון.',
+      2: 'T(0,1) = (0−1, 0+2) = (−1,2). נכון.',
+      3: 'A = [[1,1],[−1,2]] שגויה. בדיקה: A·[1;0]=[1;−1]≠(1,1).',
+    },
+    commonMistakeTag: 'T(eⱼ) → עמודה j, לא שורה j',
+  },
+
+  {
+    id: 'q180',
+    lessonId: 'matrix-as-transform',
+    topic: 'גודל המטריצה המייצגת',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'T: R³ → R² היא טרנספורמציה לינארית. מה גודל המטריצה המייצגת שלה?',
+    options: [
+      '2×3 — שתי שורות, שלוש עמודות',
+      '3×2 — שלוש שורות, שתי עמודות',
+      '3×3',
+      '2×2',
+    ],
+    correctAnswer: 0,
+    explanation: 'T: Rⁿ → Rᵐ מיוצגת ע"י מטריצה m×n. כאן n=3, m=2 → 2×3. הגיון: 3 עמודות (אחת לכל וקטור בסיס ב-R³), 2 שורות (פלט ב-R²).',
+    wrongAnswerFeedback: {
+      1: '3×2 מייצגת T: R² → R³. כאן הכיוון הפוך.',
+      2: '3×3: נכון ל-T: R³ → R³. כאן הפלט הוא R² — 2 שורות.',
+      3: '2×2: נכון ל-T: R² → R². כאן הקלט הוא R³ — 3 עמודות.',
+    },
+    commonMistakeTag: 'T: Rⁿ→Rᵐ → מטריצה m×n',
+  },
+
+  // שיעור 3: טרנספורמציות גיאומטריות בסיסיות (q181–q186)
+  {
+    id: 'q181',
+    lessonId: 'geometric-transforms',
+    topic: 'זיהוי מטריצת שיקוף מציר x',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'איזו מהמטריצות הבאות מייצגת שיקוף מציר ה-x?',
+    options: [
+      '[[1,0],[0,−1]]',
+      '[[−1,0],[0,1]]',
+      '[[1,0],[0,1]]',
+      '[[0,1],[1,0]]',
+    ],
+    correctAnswer: 0,
+    explanation: 'שיקוף מציר x: (a,b) → (a,−b). T(1,0)=(1,0) → עמודה 1=[1;0]. T(0,1)=(0,−1) → עמודה 2=[0;−1]. A=[[1,0],[0,−1]].',
+    wrongAnswerFeedback: {
+      1: '[[−1,0],[0,1]]: (a,b)→(−a,b) — שיקוף מציר y, לא x.',
+      2: '[[1,0],[0,1]]: זהו מטריצת הזהות — אין שינוי.',
+      3: '[[0,1],[1,0]]: (a,b)→(b,a) — שיקוף מהקו y=x.',
+    },
+    commonMistakeTag: 'שיקוף x: y מקבל סימן מינוס, x נשאר',
+  },
+
+  {
+    id: 'q182',
+    lessonId: 'geometric-transforms',
+    topic: 'זיהוי הטלה',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'A = [[1,0],[0,0]]. מה מייצגת הטרנספורמציה T(x,y) = Ax?',
+    options: [
+      'הטלה (projection) על ציר ה-x',
+      'שיקוף מציר ה-x',
+      'מתיחה בציר ה-x',
+      'הטלה על ציר ה-y',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(x,y) = (x,0). הרכיב x נשאר, y מאופס. כל נקודה "נופלת אנכית" על ציר x. זוהי הטלה אורתוגונלית על ציר x.',
+    wrongAnswerFeedback: {
+      1: 'שיקוף מציר x: (x,y)→(x,−y). כאן y מאופס, לא הופך סימן.',
+      2: 'מתיחה בציר x: (x,y)→(kx,y). כאן y מאופס — הטלה, לא מתיחה.',
+      3: 'הטלה על ציר y: A=[[0,0],[0,1]], מקבל (0,y). כאן מקבל (x,0) — ציר x.',
+    },
+    commonMistakeTag: 'הטלה: רכיב אחד מאופס לחלוטין',
+  },
+
+  {
+    id: 'q183',
+    lessonId: 'geometric-transforms',
+    topic: 'שיקוף מציר y',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'איזו מטריצה מייצגת שיקוף מציר ה-y?',
+    options: [
+      '[[−1,0],[0,1]]',
+      '[[1,0],[0,−1]]',
+      '[[0,1],[1,0]]',
+      '[[−1,0],[0,−1]]',
+    ],
+    correctAnswer: 0,
+    explanation: 'שיקוף מציר y: (a,b) → (−a,b). T(1,0)=(−1,0) → עמודה 1=[−1;0]. T(0,1)=(0,1) → עמודה 2=[0;1]. A=[[−1,0],[0,1]].',
+    wrongAnswerFeedback: {
+      1: '[[1,0],[0,−1]]: (a,b)→(a,−b) — שיקוף מציר x.',
+      2: '[[0,1],[1,0]]: (a,b)→(b,a) — שיקוף מהקו y=x.',
+      3: '[[−1,0],[0,−1]]: (a,b)→(−a,−b) — שיקוף מהראשית (סיבוב 180°).',
+    },
+    commonMistakeTag: 'שיקוף y: x מקבל סימן מינוס, y נשאר',
+  },
+
+  {
+    id: 'q184',
+    lessonId: 'geometric-transforms',
+    topic: 'זיהוי מתיחה אחידה',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'T(x,y) = (3x, 3y). איזו פעולה גיאומטרית זו?',
+    options: [
+      'מתיחה (scaling) אחידה פי 3 מהראשית',
+      'שיקוף מהקו y = x',
+      'הטלה על ציר x',
+      'סיבוב ב-90° עם מתיחה',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(x,y)=(3x,3y) = 3·(x,y). כל נקודה מתרחקת מהראשית פי 3. המטריצה: A=[[3,0],[0,3]]. פעולה: הגדלה אחידה (scaling) בפקטור 3.',
+    wrongAnswerFeedback: {
+      1: 'שיקוף y=x: (a,b)→(b,a) — לא שינוי גודל.',
+      2: 'הטלה: רכיב מסוים מאופס. כאן שניהם מוכפלים ב-3.',
+      3: 'סיבוב 90°: A=[[0,−1],[1,0]]. כאן אלכסון חיובי — לא סיבוב.',
+    },
+    commonMistakeTag: 'A=kI → מתיחה/כיווץ אחידה פי k',
+  },
+
+  {
+    id: 'q185',
+    lessonId: 'geometric-transforms',
+    topic: 'טעות: בניית מטריצת מתיחה',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"רצינו T(x,y) = (2x, y) — מתיחה בציר x בפקטור 2.
+T(1,0) = (2,0) → עמודה 1 = [2;0]
+T(0,1) = (0,1) → עמודה 2 = [0;1]
+A = [[1,0],[0,2]]"`,
+    options: [
+      'A = [[2,0],[0,1]] היא הנכונה — עמודה 1 = [2;0], עמודה 2 = [0;1]. A = [[1,0],[0,2]] בנויה הפוך',
+      'T(1,0) חושבה שגוי — צריך (1,2)',
+      'אין טעות — המטריצה נכונה',
+      'צריך להשתמש במטריצה 1×2',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(e₁)=(2,0) → עמודה 1 = [2;0]. T(e₂)=(0,1) → עמודה 2 = [0;1]. לכן A = [[2,0],[0,1]]. המטריצה שכתב [[1,0],[0,2]] נותנת T(x,y)=(x,2y) — מתיחה בציר y, לא x.',
+    wrongAnswerFeedback: {
+      1: 'T(1,0) = (2·1, 1) = (2,1)? לא — T(x,y)=(2x,y), אז T(1,0)=(2,0). נכון.',
+      2: 'A = [[1,0],[0,2]]·[1;0] = [1;0] = (1,0) ≠ (2,0). המטריצה שגויה.',
+      3: 'מטריצה 1×2 לא הגיונית ל-T: R²→R².',
+    },
+    commonMistakeTag: 'בניית מטריצה: עמודות מ-T(eⱼ), לא לפי תחושה',
+  },
+
+  {
+    id: 'q186',
+    lessonId: 'geometric-transforms',
+    topic: 'חישוב הטלה',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'מטריצת ההטלה על ציר ה-x היא A = [[1,0],[0,0]]. מהו הרכיב הראשון של T(3,4)?',
+    unit: '',
+    correctAnswer: 3,
+    explanation: 'T(3,4) = [[1,0],[0,0]]·[3;4] = [1·3+0·4, 0·3+0·4] = [3,0]. הרכיב הראשון הוא 3.',
+    commonMistakeTag: 'הטלה על ציר x: (x,y)→(x,0)',
+  },
+
+  // שיעור 4: גרעין ותמונה (q187–q193)
+  {
+    id: 'q187',
+    lessonId: 'kernel-image',
+    topic: 'Ker(T) = Null(A)',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'Ker(T) — גרעין הטרנספורמציה T(x)=Ax — שווה לאיזה מושג שלמדנו?',
+    options: [
+      'Null(A) — קבוצת הפתרונות של Ax=0',
+      'Col(A) — מרחב העמודות',
+      'Row(A) — מרחב השורות',
+      'Span של עמודות הפיבוט',
+    ],
+    correctAnswer: 0,
+    explanation: 'Ker(T) = {x | T(x)=0} = {x | Ax=0} = Null(A). הגרעין הוא בדיוק מה שקראנו Null(A) במודולים 4–5.',
+    wrongAnswerFeedback: {
+      1: 'Col(A) = Im(T) — התמונה. לא הגרעין.',
+      2: 'Row(A) קשור ל-RREF ולדירוג, לא לגרעין.',
+      3: 'Span עמודות הפיבוט = Col(A) = Im(T).',
+    },
+    commonMistakeTag: 'Ker(T) = Null(A), Im(T) = Col(A)',
+  },
+
+  {
+    id: 'q188',
+    lessonId: 'kernel-image',
+    topic: 'Im(T) = Col(A)',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'Im(T) — תמונת הטרנספורמציה T(x)=Ax — שווה לאיזה מושג שלמדנו?',
+    options: [
+      'Col(A) — מרחב העמודות של A',
+      'Null(A) — הגרעין של A',
+      'Row(A) — מרחב השורות של A',
+      'כל מרחב Rᵐ תמיד',
+    ],
+    correctAnswer: 0,
+    explanation: 'Im(T) = {T(x) | x∈Rⁿ} = {Ax | x∈Rⁿ} = Col(A). כפל Ax הוא בדיוק צירוף לינארי של עמודות A — לכן Im(T) = Col(A).',
+    wrongAnswerFeedback: {
+      1: 'Null(A) = Ker(T) — הגרעין. לא התמונה.',
+      2: 'Row(A) שמור לדיון אחר. Im(T) = Col(A).',
+      3: 'Im(T) = Rᵐ רק אם rank(A)=m (T על). לא תמיד.',
+    },
+    commonMistakeTag: 'Im(T) = Col(A), Ker(T) = Null(A)',
+  },
+
+  {
+    id: 'q189',
+    lessonId: 'kernel-image',
+    topic: 'dim(Ker(T)) מ-rank',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'T: R⁵ → R³. rank(A) = 2. מהו dim(Ker(T))?',
+    unit: '',
+    correctAnswer: 3,
+    explanation: 'dim(Ker(T)) = nullity(A) = n−rank = 5−2 = 3. (n=5 עמודות.) אימות: dim(Ker)+dim(Im) = 3+2 = 5 = n ✓.',
+    commonMistakeTag: 'dim(Ker) = nullity = n−rank',
+  },
+
+  {
+    id: 'q190',
+    lessonId: 'kernel-image',
+    topic: 'מציאת Ker(T) ספציפי',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'T(x,y,z) = (x+y, y+z). מה נמצא ב-Ker(T)?',
+    options: [
+      'כל וקטור מהצורה (t,−t,t) לכל t∈ℝ',
+      'רק הוקטור האפסי (0,0,0)',
+      'כל וקטור (a,b,c) ב-R³',
+      'כל וקטור עם x=0',
+    ],
+    correctAnswer: 0,
+    explanation: 'Ker(T): x+y=0 ו-y+z=0.\nמ-x+y=0: y=−x.\nמ-y+z=0: z=−y=x.\nפתרון: (x,−x,x) = x·(1,−1,1).\nKer(T) = Span{(1,−1,1)}.',
+    wrongAnswerFeedback: {
+      1: 'Ker={0} רק אם nullity=0. כאן n=3, rank=2, nullity=1≠0.',
+      2: 'לא כל (a,b,c). T(1,0,0)=(1,0)≠(0,0). (1,0,0) ∉ Ker.',
+      3: 'T(0,1,0)=(1,1)≠(0,0). x=0 לא מספיק.',
+    },
+    commonMistakeTag: 'Ker(T): פתור Ax=0 ומצא Null(A)',
+  },
+
+  {
+    id: 'q191',
+    lessonId: 'kernel-image',
+    topic: 'טעות: בלבול בין Ker ל-Im',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"T: R³ → R², A = [[1,1,0],[0,1,1]].
+rank(A) = 2.
+הגרעין Ker(T) = Col(A) — כי הגרעין קשור לעמודות המטריצה."`,
+    options: [
+      'Ker(T) = Null(A), לא Col(A). Col(A) = Im(T). הגרעין הוא הווקטורים שמתאפסים תחת T',
+      'נכון — Ker(T) = Col(A)',
+      'Ker(T) = Row(A)',
+      'הגרעין ג-Im שניהם שווים ל-Null(A)',
+    ],
+    correctAnswer: 0,
+    explanation: 'Ker(T) = Null(A) = {x | Ax=0}. Im(T) = Col(A) = {Ax | x∈Rⁿ}. הסטודנט בלבל את שני המושגים.',
+    wrongAnswerFeedback: {
+      1: 'Ker(T) = Null(A). אי-אפשר ש-Ker = Col כי Ker ⊆ Rⁿ וCol ⊆ Rᵐ — מרחבים שונים.',
+      2: 'Ker(T) = Null(A) ⊆ Rⁿ. Row(A) ⊆ Rⁿ גם, אבל הם לא שווים בכלל.',
+      3: 'Im = Col(A). Ker = Null(A). שניהם שונים.',
+    },
+    commonMistakeTag: 'Ker↔Null, Im↔Col — לא לבלבל',
+  },
+
+  {
+    id: 'q192',
+    lessonId: 'kernel-image',
+    topic: 'dim(Im) מ-dim(Ker)',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'T: R⁴ → R³. dim(Ker(T)) = 2. מהו dim(Im(T))?',
+    options: [
+      '2',
+      '3',
+      '4',
+      '1',
+    ],
+    correctAnswer: 0,
+    explanation: 'dim(Ker)+dim(Im) = n = 4. dim(Im) = 4−2 = 2. (rank(A) = dim(Im) = 2.)',
+    wrongAnswerFeedback: {
+      1: '3 = dim(R³) שמכיל את Im. אבל dim(Im) = rank = n−dim(Ker) = 4−2 = 2.',
+      2: '4 = n = dim(Ker)+dim(Im). לא dim(Im) לבד.',
+      3: '1 = n−dim(Ker)−1? לא. dim(Im) = 4−2 = 2.',
+    },
+    commonMistakeTag: 'dim(Ker)+dim(Im) = n',
+  },
+
+  {
+    id: 'q193',
+    lessonId: 'kernel-image',
+    topic: 'T=0: גרעין ותמונה',
+    difficulty: 3,
+    type: 'conceptual',
+    question: 'T: R³ → R² מוגדרת T(x) = 0 לכל x. מהם Ker(T) ו-Im(T)?',
+    options: [
+      'Ker(T) = R³, Im(T) = {0}',
+      'Ker(T) = {0}, Im(T) = R²',
+      'Ker(T) = R³, Im(T) = R²',
+      'Ker(T) = {0}, Im(T) = {0}',
+    ],
+    correctAnswer: 0,
+    explanation: 'T(x)=0 לכל x → כל x בגרעין → Ker(T)=R³. התמונה מכילה רק 0 → Im(T)={0}. בדיקה: dim(Ker)+dim(Im) = 3+0 = 3 = n ✓. המטריצה A=0 (מטריצת אפסים).',
+    wrongAnswerFeedback: {
+      1: 'Ker={0} רק אם T חד-חד-ערכית. כאן T שולחת הכל לאפס.',
+      2: 'Im=R² רק אם T על. כאן Im={0}.',
+      3: 'Ker={0} ו-Im={0}: dim=0+0=0≠3=n. סתירה.',
+    },
+    commonMistakeTag: 'T≡0: Ker=כל המרחב, Im={0}',
+  },
+
+  // שיעור 5: חד-חד-ערכיות, על, ודרגה (q194–q198)
+  {
+    id: 'q194',
+    lessonId: 'injective-surjective',
+    topic: 'חד-חד-ערכיות וגרעין',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'T: Rⁿ → Rᵐ היא חד-חד-ערכית (one-to-one). מה זה אומר על Ker(T)?',
+    options: [
+      'Ker(T) = {0} — הגרעין מכיל רק האפס',
+      'Ker(T) = Rⁿ — כל הוקטורים בגרעין',
+      'Ker(T) = Rᵐ',
+      'לא ניתן לדעת ללא מידע על rank',
+    ],
+    correctAnswer: 0,
+    explanation: 'T חד-חד-ערכית ⟺ Ker(T) = {0}. הסבר: אם T(u)=T(v), אז T(u−v)=0, כלומר u−v∈Ker. אם Ker={0} אז u−v=0 → u=v. הכיוון הפוך גם נכון.',
+    wrongAnswerFeedback: {
+      1: 'Ker=Rⁿ ⟺ T≡0, שזו הנגדית לחד-חד-ערכית.',
+      2: 'Ker ⊆ Rⁿ, לא Rᵐ. Ker=Rᵐ אין משמעות כאן.',
+      3: 'כן ניתן: T חד-חד-ערכית ⟺ Ker={0} ⟺ nullity=0 ⟺ rank=n.',
+    },
+    commonMistakeTag: 'חד-חד-ערכית ⟺ Ker={0} ⟺ rank=n',
+  },
+
+  {
+    id: 'q195',
+    lessonId: 'injective-surjective',
+    topic: 'זיהוי חד-חד-ערכיות ועל מ-rank',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A מטריצה 3×4 עם rank(A) = 3. האם T(x)=Ax חד-חד-ערכית? האם על?',
+    options: [
+      'לא חד-חד-ערכית (nullity=1>0), כן על (rank=m=3)',
+      'כן חד-חד-ערכית, כן על',
+      'כן חד-חד-ערכית, לא על',
+      'לא חד-חד-ערכית, לא על',
+    ],
+    correctAnswer: 0,
+    explanation: 'חד-חד-ערכית: rank=3 < n=4 → nullity=1 → Ker≠{0} → לא. על: rank=3=m=3 → Im=R³ → כן. T "מגיעה לכל R³" אבל לא "מהמקום היחיד".',
+    wrongAnswerFeedback: {
+      1: 'חד-חד-ערכית: rank=n → rank=4 נדרש. rank=3<4 → nullity=1 → לא.',
+      2: 'rank=3<n=4 → nullity=1>0 → Ker≠{0} → לא חד-חד-ערכית. על — כן, rank=m=3.',
+      3: 'rank=3=m=3: Im=R³ → על. rank=3<n=4: לא חד-חד-ערכית.',
+    },
+    commonMistakeTag: 'חד-חד-ערכית: rank=n. על: rank=m',
+  },
+
+  {
+    id: 'q196',
+    lessonId: 'injective-surjective',
+    topic: 'מטריצה גבוהה — one-to-one בלי onto',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A מטריצה 3×2 עם rank(A) = 2. האם T(x)=Ax חד-חד-ערכית? האם על?',
+    options: [
+      'כן חד-חד-ערכית (rank=n=2), לא על (rank=2 < m=3)',
+      'לא חד-חד-ערכית, לא על',
+      'כן חד-חד-ערכית, כן על',
+      'לא חד-חד-ערכית, כן על',
+    ],
+    correctAnswer: 0,
+    explanation: 'חד-חד-ערכית: rank=2=n=2 → nullity=0 → Ker={0} → כן. על: rank=2 < m=3 → Im ≠ R³ → לא. T: R²→R³ "מטרגלת" ב-R³ אבל לא מגיעה לכל R³.',
+    wrongAnswerFeedback: {
+      1: 'rank=2=n: nullity=0 → Ker={0} → חד-חד-ערכית. rank=2<m=3: לא על.',
+      2: 'rank=n=2: כן חד-חד-ערכית, כן על — rank=m=3 נדרש לעל. כאן rank=2<3.',
+      3: 'rank=2<m=3: Im≠R³ → לא על.',
+    },
+    commonMistakeTag: 'T: Rⁿ→Rᵐ, n<m — יכולה להיות חד-חד-ערכית אבל לא על',
+  },
+
+  {
+    id: 'q197',
+    lessonId: 'injective-surjective',
+    topic: 'טעות: rank>0 מספיק לחד-חד-ערכית',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"T: R³ → R³, rank(A) = 2.
+rank < n=3 → T לא חד-חד-ערכית. ✓
+rank < m=3 → T לא על. ✓
+אבל rank=2 > 0, לכן T בכל זאת חד-חד-ערכית חלקית."`,
+    options: [
+      '"חד-חד-ערכית חלקית" לא קיים — T חד-חד-ערכית ⟺ Ker={0} ⟺ rank=n. rank>0 לא מספיק',
+      'rank < n אינו פוסל חד-חד-ערכיות',
+      'T חד-חד-ערכית כי rank=2',
+      'rank < m פוסל חד-חד-ערכיות, לא על',
+    ],
+    correctAnswer: 0,
+    explanation: '"חד-חד-ערכית חלקית" אינו מושג מוגדר. חד-חד-ערכית = בינרי: כן/לא. rank=2<n=3 → nullity=1 → Ker≠{0} → לא חד-חד-ערכית, תחת כלל.',
+    wrongAnswerFeedback: {
+      1: 'rank < n פוסל חד-חד-ערכיות — nullity > 0 → Ker≠{0}. הניתוח הראשוני נכון.',
+      2: 'T: R³→R³, rank=2 → לא חד-חד-ערכית. rank=2 ≠ n=3.',
+      3: 'rank < m = rank < n כאן (מטריצה ריבועית) — שניהם פוסלים. הכינוי "חלקית" שגוי.',
+    },
+    commonMistakeTag: 'חד-חד-ערכית: rank=n בדיוק, לא "חלקית"',
+  },
+
+  {
+    id: 'q198',
+    lessonId: 'injective-surjective',
+    topic: 'אינטגרציה: ריבועית עם rank מלא',
+    difficulty: 4,
+    type: 'multiple-choice',
+    question: 'T: R³ → R³ עם rank(A) = 3. מה נכון?',
+    options: [
+      'T חד-חד-ערכית וגם על — rank = n = m = 3',
+      'T חד-חד-ערכית אבל לא על',
+      'T על אבל לא חד-חד-ערכית',
+      'T לא חד-חד-ערכית ולא על',
+    ],
+    correctAnswer: 0,
+    explanation: 'rank=3=n → nullity=0 → Ker={0} → חד-חד-ערכית. rank=3=m=3 → Im=R³ → על. מטריצה ריבועית עם rank מלא: חד-חד-ערכית ⟺ על ⟺ A הפיכה (נושא המודול הבא).',
+    wrongAnswerFeedback: {
+      1: 'למטריצה ריבועית: חד-חד-ערכית ⟺ על. אם rank=n=m — שתיהן מתקיימות.',
+      2: 'למטריצה ריבועית: חד-חד-ערכית ⟺ על. אם rank=n — גם rank=m.',
+      3: 'rank=3<n=3? לא — rank=3=n. לא חד-חד-ערכית ולא על רק אם rank<n=m.',
+    },
+    commonMistakeTag: 'מטריצה ריבועית rank=n ⟺ חד-חד-ערכית ⟺ על ⟺ הפיכה',
+  },
 ]
 
 export default questions
