@@ -51,6 +51,13 @@ const LESSON_FORMULA = {
   'invertibility-conditions':    String.raw`A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}=n\;\Longleftrightarrow\;\mathrm{Null}=\{0\}\;\Longleftrightarrow\;\det(A)\neq 0`,
   'determinant-intro':           String.raw`\det\!\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc \qquad |\det(A)|=\text{שינוי שטח/נפח}`,
   'determinant-invertibility':   String.raw`\det(A)\neq 0\;\Longleftrightarrow\;A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}(A)=n`,
+
+  // Module 8 — Eigenvalues, Eigenvectors and Diagonalization
+  'eigenvalue-intro':                String.raw`Av=\lambda v,\quad v\neq\mathbf{0}\qquad\underbrace{\lambda}_{\text{ערך עצמי}}\in\mathbb{R},\quad\underbrace{v}_{\text{וקטור עצמי}}\neq\mathbf{0}`,
+  'finding-eigenvalues':             String.raw`Av=\lambda v\;\Longleftrightarrow\;(A-\lambda I)v=\mathbf{0}\;\Longleftrightarrow\;\underbrace{\det(A-\lambda I)=0}_{\text{פולינום אופייני}}`,
+  'finding-eigenvectors':            String.raw`\text{eigenspace}_\lambda=\mathrm{Null}(A-\lambda I)=\{v\neq\mathbf{0}:Av=\lambda v\}\cup\{\mathbf{0}\}`,
+  'algebraic-geometric-multiplicity': String.raw`1\;\leq\;\underbrace{g}_{\dim\mathrm{Null}(A-\lambda I)}\;\leq\;\underbrace{a}_{\text{חזקת }(\lambda-\lambda_i)\text{ בפולינום}}\qquad g=a\;\forall\lambda\;\Leftrightarrow\;\text{ניתן ללכסון}`,
+  'diagonalization':                 String.raw`A=PDP^{-1},\quad D=\mathrm{diag}(\lambda_1,\ldots,\lambda_n),\quad P=\bigl[v_1\mid\cdots\mid v_n\bigr]\quad A^k=PD^kP^{-1}`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
