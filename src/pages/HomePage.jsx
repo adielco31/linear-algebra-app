@@ -6,21 +6,18 @@ import { useProgressData } from '../lib/useProgressData'
 import { useAuth } from '../lib/AuthContext'
 import modules from '../data/modules'
 
-const MODULE = modules[0]
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
-// ─── Motivational text based on progress ─────────────────────────────────────
+function getModuleLabel(index) {
+  const labels = ['מודול ראשון', 'מודול שני', 'מודול שלישי', 'מודול רביעי']
+  return labels[index] ?? `מודול ${index + 1}`
+}
 
 function getMotivation(completedCount, total) {
-  if (completedCount === 0)    return 'כל דבר גדול מתחיל בצעד קטן. הנה השלך.'
+  if (completedCount === 0)     return 'כל דבר גדול מתחיל בצעד קטן. הנה השלך.'
   if (completedCount === total) return 'השלמת את המודול. כל הכבוד — זה לא פשוט.'
   if (completedCount / total >= 0.6) return 'יותר ממחצית הדרך. אל תפסיק עכשיו.'
   return 'אתה מתקדם. כל שיעור בונה על הקודם.'
-}
-
-function getCTA(completedCount, total) {
-  if (completedCount === 0)    return 'התחל ללמוד'
-  if (completedCount === total) return 'עיין במודול'
-  return 'המשך ללמוד'
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -30,17 +27,13 @@ export default function HomePage() {
   const { completedLessons, totalCorrect, totalWrong, currentStreak, answeredQuestions } = useProgressData(user?.id)
   const pendingReviews = getPendingReviewCount()
 
-  const totalAnswered  = totalCorrect + totalWrong
-  const accuracyPct    = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : null
+  const totalAnswered = totalCorrect + totalWrong
+  const accuracyPct   = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : null
 
-  const completedCount = MODULE.lessons.filter(l => completedLessons.has(l.id)).length
-  const progressPct    = Math.round((completedCount / MODULE.lessons.length) * 100)
-
-  const motivation = getMotivation(completedCount, MODULE.lessons.length)
-  const cta        = getCTA(completedCount, MODULE.lessons.length)
-
-  // Find the next unlocked lesson to link to
-  const nextLesson = MODULE.lessons.find(l => !completedLessons.has(l.id)) ?? MODULE.lessons[0]
+  // Progress across all modules combined — drives hero motivation text
+  const totalLessons    = modules.reduce((sum, m) => sum + m.lessons.length, 0)
+  const totalCompleted  = modules.reduce((sum, m) => sum + m.lessons.filter(l => completedLessons.has(l.id)).length, 0)
+  const motivation      = getMotivation(totalCompleted, totalLessons)
 
   return (
     <div className="min-h-screen bg-slate-100 pb-20">
@@ -60,103 +53,93 @@ export default function HomePage() {
 
       <main className="px-4 pt-5 pb-4 space-y-4">
 
-        {/* ── Module progress card ── */}
-        <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        {/* ── All modules ── */}
+        {modules.map((mod, modIndex) => {
+          const completedCount = mod.lessons.filter(l => completedLessons.has(l.id)).length
+          const progressPct    = Math.round((completedCount / mod.lessons.length) * 100)
+          const nextLesson     = mod.lessons.find(l => !completedLessons.has(l.id)) ?? mod.lessons[0]
+          const allDone        = completedCount === mod.lessons.length
+          const ctaLabel       = completedCount === 0 ? 'התחל ללמוד' : allDone ? 'עיין במודול' : 'המשך ללמוד'
 
-          {/* Module meta */}
-          <div className="px-5 pt-5 pb-4">
-            <div className="flex items-center justify-between mb-1">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
-                מודול ראשון
-              </p>
-              <span className="text-xs font-semibold text-indigo-600 tabular-nums">
-                {progressPct}%
-              </span>
-            </div>
-            <h2 className="text-base font-bold text-slate-900 leading-snug mt-1">
-              {MODULE.title}
-            </h2>
+          return (
+            <section key={mod.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
-            <ProgressBar
-              value={completedCount}
-              max={MODULE.lessons.length}
-              color={completedCount === MODULE.lessons.length ? 'bg-emerald-500' : 'bg-indigo-500'}
-              className="mt-4"
-            />
-
-            <p className="text-xs text-slate-400 mt-2">
-              {completedCount} מתוך {MODULE.lessons.length} שיעורים הושלמו
-            </p>
-          </div>
-
-          {/* CTA */}
-          <Link
-            to={`/lesson/${nextLesson.id}`}
-            className="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 px-5 py-4 transition-colors"
-          >
-            <span className="text-white font-semibold text-base">{cta}</span>
-            <ArrowIcon />
-          </Link>
-        </section>
-
-        {/* ── All lessons ── */}
-        <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="px-5 pt-4 pb-2 flex items-center justify-between">
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
-              כל השיעורים
-            </p>
-            <span className="text-xs text-slate-300 tabular-nums">
-              {completedCount}/{MODULE.lessons.length}
-            </span>
-          </div>
-
-          <div className="divide-y divide-slate-50">
-            {MODULE.lessons.map((lesson, i) => {
-              const isCompleted = completedLessons.has(lesson.id)
-              const lessonProg  = getLessonProgress(lesson.questionIds ?? [], answeredQuestions)
-              const pct         = isCompleted ? 100 : lessonProg.pct
-
-              return (
-                <Link
-                  key={lesson.id}
-                  to={`/lesson/${lesson.id}`}
-                  className="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50 active:bg-slate-100 transition-colors"
-                >
-                  {isCompleted ? (
-                    <div className="shrink-0 w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                      <SmallCheckIcon />
-                    </div>
-                  ) : (
-                    <div className="shrink-0 w-7 h-7 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-bold">
-                      {i + 1}
-                    </div>
-                  )}
-
-                  <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-semibold leading-snug truncate ${
-                      isCompleted ? 'text-slate-400' : 'text-slate-800'
-                    }`}>
-                      {lesson.title}
-                    </p>
-                    {pct > 0 && pct < 100 && (
-                      <div className="mt-1.5 h-1 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-1 bg-indigo-400 rounded-full" style={{ width: `${pct}%` }} />
-                      </div>
-                    )}
-                  </div>
-
-                  <span className={`shrink-0 text-xs font-medium ${
-                    isCompleted ? 'text-emerald-500' : pct > 0 ? 'text-indigo-500' : 'text-slate-300'
-                  }`}>
-                    {isCompleted ? 'הושלם' : pct > 0 ? `${pct}%` : ''}
+              {/* Module header */}
+              <div className="px-5 pt-5 pb-4">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
+                    {getModuleLabel(modIndex)}
+                  </p>
+                  <span className="text-xs font-semibold text-indigo-600 tabular-nums">
+                    {progressPct}%
                   </span>
+                </div>
+                <h2 className="text-base font-bold text-slate-900 leading-snug mt-1">
+                  {mod.title}
+                </h2>
+                <ProgressBar
+                  value={completedCount}
+                  max={mod.lessons.length}
+                  color={allDone ? 'bg-emerald-500' : 'bg-indigo-500'}
+                  className="mt-4"
+                />
+                <p className="text-xs text-slate-400 mt-2">
+                  {completedCount} מתוך {mod.lessons.length} שיעורים הושלמו
+                </p>
+              </div>
 
-                  <ChevronLeftIcon />
-                </Link>
-              )
-            })}
-          </div>
-        </section>
+              {/* Lessons list */}
+              <div className="divide-y divide-slate-50">
+                {mod.lessons.map((lesson, i) => {
+                  const isCompleted = completedLessons.has(lesson.id)
+                  const lessonProg  = getLessonProgress(lesson.questionIds ?? [], answeredQuestions)
+                  const pct         = isCompleted ? 100 : lessonProg.pct
+
+                  return (
+                    <Link
+                      key={lesson.id}
+                      to={`/lesson/${lesson.id}`}
+                      className="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50 active:bg-slate-100 transition-colors"
+                    >
+                      {isCompleted ? (
+                        <div className="shrink-0 w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                          <SmallCheckIcon />
+                        </div>
+                      ) : (
+                        <div className="shrink-0 w-7 h-7 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-bold">
+                          {i + 1}
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm font-semibold leading-snug truncate ${isCompleted ? 'text-slate-400' : 'text-slate-800'}`}>
+                          {lesson.title}
+                        </p>
+                        {pct > 0 && pct < 100 && (
+                          <div className="mt-1.5 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div className="h-1 bg-indigo-400 rounded-full" style={{ width: `${pct}%` }} />
+                          </div>
+                        )}
+                      </div>
+                      <span className={`shrink-0 text-xs font-medium ${isCompleted ? 'text-emerald-500' : pct > 0 ? 'text-indigo-500' : 'text-slate-300'}`}>
+                        {isCompleted ? 'הושלם' : pct > 0 ? `${pct}%` : ''}
+                      </span>
+                      <ChevronLeftIcon />
+                    </Link>
+                  )
+                })}
+              </div>
+
+              {/* CTA */}
+              <Link
+                to={`/lesson/${nextLesson.id}`}
+                className="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 px-5 py-4 transition-colors"
+              >
+                <span className="text-white font-semibold text-base">{ctaLabel}</span>
+                <ArrowIcon />
+              </Link>
+            </section>
+          )
+        })}
 
         {/* ── Review mistakes ── */}
         {pendingReviews > 0 && (

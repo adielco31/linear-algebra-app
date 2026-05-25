@@ -11,6 +11,11 @@ const LESSON_FORMULA = {
   'ref-rref': String.raw`\underbrace{\begin{pmatrix} \mathbf{1} & * & * \\ 0 & \mathbf{1} & * \\ 0 & 0 & \mathbf{1} \end{pmatrix}}_{\text{REF}} \xrightarrow{\text{continue}} \underbrace{\begin{pmatrix} \mathbf{1} & 0 & 0 \\ 0 & \mathbf{1} & 0 \\ 0 & 0 & \mathbf{1} \end{pmatrix}}_{\text{RREF}}`,
   'solutions-count': String.raw`\text{rank}(A) < \text{rank}([A|b]) \Rightarrow \emptyset \qquad \text{rank}(A)=n \Rightarrow \{x_0\} \qquad \text{rank}(A)<n \Rightarrow \infty`,
   'free-variables': String.raw`\mathbf{x} = \mathbf{x}_p + t_1\mathbf{v}_1 + t_2\mathbf{v}_2 + \cdots + t_k\mathbf{v}_k, \quad t_i \in \mathbb{R}`,
+  'vectors-intro': String.raw`\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} \in \mathbb{R}^n, \qquad \mathbf{u} = \mathbf{v} \iff u_i = v_i \ \forall i`,
+  'vector-operations': String.raw`\mathbf{u} + \mathbf{v} = \begin{pmatrix} u_1+v_1 \\ \vdots \\ u_n+v_n \end{pmatrix}, \qquad c\mathbf{v} = \begin{pmatrix} cv_1 \\ \vdots \\ cv_n \end{pmatrix}`,
+  'vectors-geometry': String.raw`\|\mathbf{v}\| = \sqrt{v_1^2 + \cdots + v_n^2}, \qquad \hat{\mathbf{v}} = \frac{\mathbf{v}}{\|\mathbf{v}\|}, \qquad d(\mathbf{u},\mathbf{v}) = \|\mathbf{u}-\mathbf{v}\|`,
+  'linear-combination': String.raw`c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_k\mathbf{v}_k, \quad c_i \in \mathbb{R}`,
+  'vector-equations': String.raw`x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \cdots + x_n\mathbf{a}_n = \mathbf{b} \iff A\mathbf{x} = \mathbf{b}`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
