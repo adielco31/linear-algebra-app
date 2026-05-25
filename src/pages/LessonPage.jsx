@@ -58,6 +58,13 @@ const LESSON_FORMULA = {
   'finding-eigenvectors':            String.raw`\text{eigenspace}_\lambda=\mathrm{Null}(A-\lambda I)=\{v\neq\mathbf{0}:Av=\lambda v\}\cup\{\mathbf{0}\}`,
   'algebraic-geometric-multiplicity': String.raw`1\;\leq\;\underbrace{g}_{\dim\mathrm{Null}(A-\lambda I)}\;\leq\;\underbrace{a}_{\text{חזקת }(\lambda-\lambda_i)\text{ בפולינום}}\qquad g=a\;\forall\lambda\;\Leftrightarrow\;\text{ניתן ללכסון}`,
   'diagonalization':                 String.raw`A=PDP^{-1},\quad D=\mathrm{diag}(\lambda_1,\ldots,\lambda_n),\quad P=\bigl[v_1\mid\cdots\mid v_n\bigr]\quad A^k=PD^kP^{-1}`,
+
+  // Module 9 — Orthogonality, Inner Product and Projections
+  'inner-product-norm':     String.raw`u\cdot v=\sum_{i}u_iv_i\qquad\|v\|=\sqrt{v\cdot v}\qquad u\cdot v=\|u\|\|v\|\cos\theta`,
+  'orthogonality-vectors':  String.raw`u\perp v\;\Longleftrightarrow\;u\cdot v=0\qquad\{v_i\}\text{ אורתוגונלית}\;\Rightarrow\;\text{בלתי תלויה}`,
+  'orthonormal-basis':      String.raw`u_i\cdot u_j=\delta_{ij}=\begin{cases}1&i=j\\0&i\neq j\end{cases}\qquad\hat{v}=\dfrac{v}{\|v\|}`,
+  'orthogonal-projection':  String.raw`\mathrm{proj}_v(u)=\frac{u\cdot v}{v\cdot v}\,v\qquad u=\underbrace{\mathrm{proj}_v(u)}_{\parallel v}+\underbrace{(u-\mathrm{proj}_v(u))}_{\perp v}`,
+  'gram-schmidt':           String.raw`u_1=\frac{v_1}{\|v_1\|},\quad v_j'=v_j-\sum_{i<j}(v_j\cdot u_i)u_i,\quad u_j=\frac{v_j'}{\|v_j'\|}`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
