@@ -24,6 +24,13 @@ const LESSON_FORMULA = {
   'linear-independence':  String.raw`c_1v_1+\cdots+c_kv_k=\mathbf{0} \;\Longrightarrow\; c_1=c_2=\cdots=c_k=0`,
   'span-dependence-summary': String.raw`\underbrace{\operatorname{rank}=n}_{\text{Span}=\mathbb{R}^n} \qquad \underbrace{\operatorname{rank}=k}_{\text{בלתי-תלויים}} \qquad \underbrace{\operatorname{rank}=n=k}_{\text{בסיס}}`,
 
+  // Module 5 — Basis, Dimension, Rank and Nullity
+  'basis-intro':           String.raw`B=\{v_1,\ldots,v_k\}\text{ בסיס ל-}V\;\Longleftrightarrow\;\underbrace{\mathrm{Span}\{v_i\}=V}_{\text{פורש}}\;\wedge\;\underbrace{c_1v_1+\cdots=\mathbf{0}\Rightarrow c_i=0}_{\text{בלתי תלוי}}`,
+  'dimension':             String.raw`\dim(V)=k\;\Longleftrightarrow\;\text{כל בסיס של }V\text{ מכיל בדיוק }k\text{ וקטורים}`,
+  'basis-col-span':        String.raw`\text{pivot cols of REF}\;\xrightarrow{\text{חזרה ל-}A\text{ המקורית}}\;\text{בסיס ל-}\mathrm{Col}(A)`,
+  'basis-null':            String.raw`Ax=\mathbf{0}\;\Rightarrow\;x=t_1v_1+\cdots+t_kv_k\qquad\{v_1,\ldots,v_k\}=\text{בסיס ל-}\mathrm{Null}(A)`,
+  'rank-nullity-theorem':  String.raw`\underbrace{\mathrm{rank}(A)}_{\text{פיבוטים}}+\underbrace{\mathrm{nullity}(A)}_{\text{חופשיים}}=n=\text{מספר עמודות}`,
+
   // Module 4 — Vector Spaces and Subspaces
   'vector-space-intro': String.raw`u+v\in V,\quad c\cdot v\in V \qquad \forall\,u,v\in V,\; c\in\mathbb{R}`,
   'subspace-intro':     String.raw`W\leq V \;\Longleftrightarrow\; \begin{cases}(1)\;\mathbf{0}\in W\\ (2)\;u,v\in W\;\Rightarrow\;u+v\in W\\ (3)\;c\in\mathbb{R},\,v\in W\;\Rightarrow\;cv\in W\end{cases}`,

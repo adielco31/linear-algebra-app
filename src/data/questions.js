@@ -4139,6 +4139,647 @@ r₂ ≠ r₂′, לכן Span{r₁,r₂} ≠ Span{r₁,r₂′}.
 
     commonMistakeTag: 'rank-nullity לסיכום כל המרחבים',
   },
+
+  // ─────────────────────────────────────────────────────
+  // Module 5 — בסיס, מימד, Rank ו-Nullity
+  // ─────────────────────────────────────────────────────
+
+  // שיעור 1: מהו בסיס? (q139–q144)
+  {
+    id: 'q139',
+    lessonId: 'basis-intro',
+    topic: 'זיהוי בסיס ל-R²',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'איזו מהקבוצות הבאות היא בסיס ל-R²?',
+    options: [
+      '{(1,0), (0,1)}',
+      '{(1,0), (0,1), (1,1)}',
+      '{(2,4)}',
+      '{(1,2), (2,4)}',
+    ],
+    correctAnswer: 0,
+    explanation: 'הבסיס הסטנדרטי {(1,0),(0,1)}: פורש את R² (כל (a,b) = a(1,0)+b(0,1)) ובלתי תלוי. שלוש האחרות נכשלות: 3 וקטורים ב-R² — תמיד תלויים; וקטור בודד — לא פורש; {(1,2),(2,4)} — (2,4)=2(1,2) תלויים.',
+    wrongAnswerFeedback: {
+      1: '3 וקטורים ב-R² — יש יותר וקטורים מהמימד (2), לכן יש תמיד תלות לינארית. לא יכולה להיות בסיס.',
+      2: 'וקטור בודד פורש קו, לא את כל R². חסרים כיוונים.',
+      3: '(2,4) = 2·(1,2) — הוקטורים תלויים. קבוצה תלויה אינה בסיס.',
+    },
+    commonMistakeTag: 'תנאי הכרחי: בדיוק n וקטורים ב-Rⁿ',
+  },
+
+  {
+    id: 'q140',
+    lessonId: 'basis-intro',
+    topic: 'מספר וקטורים בבסיס',
+    difficulty: 1,
+    type: 'conceptual',
+    question: 'מדוע לא ייתכן שלושה וקטורים יהוו בסיס ל-R²?',
+    options: [
+      'כי שלושה וקטורים ב-R² תמיד תלויים לינארית — יש יותר וקטורים ממה שמימד המרחב מאפשר',
+      'כי שלושה וקטורים לא יכולים לפרוש את R²',
+      'כי בסיס חייב להכיל מספר זוגי של וקטורים',
+      'כי שלושה וקטורים ב-R² תמיד בלתי תלויים ולכן "גדולים מדי"',
+    ],
+    correctAnswer: 0,
+    explanation: 'ב-R² המימד הוא 2. כל k+1=3 וקטורים במרחב ממימד k=2 חייבים להיות תלויים לינארית. תלות פוסלת בלתי-תלות — תנאי הכרחי לבסיס.',
+    wrongAnswerFeedback: {
+      1: 'שלושה וקטורים יכולים לפרוש את R² (כגון {(1,0),(0,1),(1,1)}). הבעיה היא תלות לינארית, לא הפריסה.',
+      2: 'אין דרישה לזוגיות. R¹ לדוגמה דורש בסיס עם וקטור אחד.',
+      3: 'תלות לינארית פוסלת בסיס — לא "גדול מדי". כמות גדולה מהמימד גורמת תמיד לתלות.',
+    },
+    commonMistakeTag: 'dim(V) = מספר וקטורים בבסיס בדיוק',
+  },
+
+  {
+    id: 'q141',
+    lessonId: 'basis-intro',
+    topic: 'בדיקת בסיס — וקטורים תלויים',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'האם {(1,2), (2,4)} היא בסיס ל-R²?',
+    options: [
+      'לא — (2,4) = 2·(1,2), הווקטורים תלויים לינארית',
+      'כן — יש שני וקטורים ויש שני מימדים ב-R²',
+      'לא — הם לא שווים לוקטורים הסטנדרטיים e₁, e₂',
+      'כן — הם שונים זה מזה',
+    ],
+    correctAnswer: 0,
+    explanation: '(2,4) = 2·(1,2) — תלות לינארית. קבוצה תלויה אינה בסיס. הם גם לא פורשים את R²: כל צירוף הוא c·(1,2) — קו אחד בלבד, לא המישור כולו.',
+    wrongAnswerFeedback: {
+      1: 'שני וקטורים ב-R² הוא תנאי הכרחי אבל לא מספיק — צריך גם בלתי-תלות. כאן הם תלויים.',
+      2: 'הבסיס הסטנדרטי הוא רק דוגמה. הבעיה כאן היא תלות, לא שוני מהסטנדרטי.',
+      3: 'שוני ≠ בלתי-תלות. (1,2) ו-(2,4) שונים אך עדיין תלויים.',
+    },
+    commonMistakeTag: 'שוני ≠ בלתי-תלות לינארית',
+  },
+
+  {
+    id: 'q142',
+    lessonId: 'basis-intro',
+    topic: 'זיהוי בסיס ל-R³',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'איזו מהקבוצות הבאות היא בסיס ל-R³?',
+    options: [
+      '{(1,0,0), (0,1,0), (0,0,1)}',
+      '{(1,0,0), (0,1,0)}',
+      '{(1,1,0), (0,1,1), (1,0,1), (0,0,1)}',
+      '{(1,2,3), (2,4,6), (0,0,1)}',
+    ],
+    correctAnswer: 0,
+    explanation: 'הבסיס הסטנדרטי {e₁,e₂,e₃}: 3 וקטורים ב-R³, בלתי תלויים ופורשים. {(1,0,0),(0,1,0)}: רק 2 — לא פורש R³. 4 וקטורים ב-R³: תמיד תלויים. {(1,2,3),(2,4,6),...}: (2,4,6)=2(1,2,3) — תלות.',
+    wrongAnswerFeedback: {
+      1: '2 וקטורים ב-R³ יכולים לפרוש לכל היותר מישור, לא את כל R³.',
+      2: '4 וקטורים ב-R³ — יותר מהמימד — תמיד תלויים לינארית.',
+      3: '(2,4,6) = 2·(1,2,3) — תלות לינארית. שתי העמודות הראשונות מייצגות אותו כיוון.',
+    },
+    commonMistakeTag: 'בדיקה כפולה: n וקטורים + בלתי-תלות',
+  },
+
+  {
+    id: 'q143',
+    lessonId: 'basis-intro',
+    topic: 'טעות: בלתי-תלות לא מספיקה לבסיס',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות בטענה הבאה:',
+    fauxSolution:
+`"הקבוצה {(1,0,0), (0,1,0)} היא בסיס ל-R³ כי:
+1. הווקטורים בלתי תלויים לינארית ✓
+2. לכן הם יוצרים בסיס ל-R³."`,
+    options: [
+      'בלתי-תלות לבד לא מספיקה — הקבוצה חייבת גם לפרוש את R³. {(1,0,0),(0,1,0)} פורש רק מישור בתוך R³',
+      'הווקטורים בעצם תלויים: (0,1,0) = (1,0,0)−(1,−1,0)',
+      'צריך לבדוק רק span, לא תלות לינארית',
+      'הבסיס חייב להכיל וקטורים אורתוגונלים',
+    ],
+    correctAnswer: 0,
+    explanation: 'הוקטורים אכן בלתי תלויים. אבל Span{(1,0,0),(0,1,0)} = {(a,b,0) | a,b∈ℝ} — מישור, לא R³. כדי לפרוש R³ צריך לפחות 3 וקטורים בלתי תלויים.',
+    wrongAnswerFeedback: {
+      1: 'c₁(1,0,0)+c₂(0,1,0)=0 ⟹ c₁=c₂=0. הם אכן בלתי תלויים. הטעות היא בטענת הפריסה.',
+      2: 'span הוא תנאי לבסיס, אבל לא לבדו — צריך גם בלתי-תלות.',
+      3: 'אורתוגונליות היא נוחות, לא דרישה לבסיס.',
+    },
+    commonMistakeTag: 'שני תנאים לבסיס: span AND בלתי-תלות',
+  },
+
+  {
+    id: 'q144',
+    lessonId: 'basis-intro',
+    topic: 'הגדרת בסיס — שני תנאים',
+    difficulty: 3,
+    type: 'conceptual',
+    question: 'אם {v₁, v₂, v₃} פורש את R³ וגם בלתי תלוי לינארית, האם זה בסיס ל-R³?',
+    options: [
+      'כן — בדיוק שני התנאים הנדרשים לבסיס מתקיימים',
+      'לא בהכרח — צריך לבדוק גם שהווקטורים שייכים ל-R³',
+      'לא בהכרח — צריך לבדוק שהוקטורים אורתוגונלים',
+      'כן — אבל רק אם הם וקטורי יחידה (norm = 1)',
+    ],
+    correctAnswer: 0,
+    explanation: 'ההגדרה: פורש V ובלתי תלוי לינארית. שני התנאים מתקיימים — זהו בסיס. בנוסף: כל קבוצה שפורשת R³ ובלתי תלויה חייבת להכיל בדיוק 3 וקטורים.',
+    wrongAnswerFeedback: {
+      1: 'כל וקטור ב-Rⁿ שייך ל-Rⁿ בהגדרה. אין צורך לבדוק זאת בנפרד.',
+      2: 'אורתוגונליות נוחה מאוד אבל לא נדרשת. {(1,1),(0,1)} הוא בסיס ל-R² ולא אורתוגונלי.',
+      3: 'נרמול הוא לבסיס אורתונורמלי. בסיס רגיל לא דורש norm=1.',
+    },
+    commonMistakeTag: 'הגדרת בסיס: span + בלתי-תלות = הכל',
+  },
+
+  // שיעור 2: מהו מימד? (q145–q150)
+  {
+    id: 'q145',
+    lessonId: 'dimension',
+    topic: 'מימד של Rⁿ',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'מה הוא dim(R⁴)?',
+    options: ['4', '2', '16', 'תלוי בבסיס שבוחרים'],
+    correctAnswer: 0,
+    explanation: 'dim(Rⁿ) = n. ל-R⁴ יש בסיס סטנדרטי מ-4 וקטורים (e₁,e₂,e₃,e₄), ולכל בסיס אחר יהיו גם 4 וקטורים. המימד הוא תכונה של המרחב, לא של הבסיס הספציפי.',
+    wrongAnswerFeedback: {
+      1: '2 הוא dim(R²). כל Rⁿ מכיל בסיס סטנדרטי של בדיוק n וקטורים.',
+      2: '16 = 4² — אין קשר. המימד הוא n, לא n².',
+      3: 'המימד קבוע. כל הבסיסים של R⁴ מכילים בדיוק 4 וקטורים — זהו משפט יסודי.',
+    },
+    commonMistakeTag: 'dim(Rⁿ) = n',
+  },
+
+  {
+    id: 'q146',
+    lessonId: 'dimension',
+    topic: 'מימד של Span בודד',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'מה הוא dim(Span{(1,2,3)})?',
+    options: ['1', '3', '0', 'אי-אפשר לדעת'],
+    correctAnswer: 0,
+    explanation: 'Span{(1,2,3)} = {t·(1,2,3) | t∈ℝ} — קו ישר ב-R³. קו הוא מרחב ממימד 1. בסיס לקו זה: {(1,2,3)} — וקטור בודד.',
+    wrongAnswerFeedback: {
+      1: '3 הוא dim(R³). (1,2,3) נמצא ב-R³, אבל Span שלו הוא קו — מרחב ממימד 1.',
+      2: 'dim=0 שמור ל-{0}. (1,2,3) ≠ 0.',
+      3: 'וקטור אחד שאינו אפס פורש קו — ממימד 1 בדיוק.',
+    },
+    commonMistakeTag: 'dim(Span{v}) = 1 אם v≠0',
+  },
+
+  {
+    id: 'q147',
+    lessonId: 'dimension',
+    topic: 'מימד של Span — מציאה בדירוג',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'מצא את dim(W) עבור W = Span{(1,0,1), (0,1,2), (1,1,3)}.',
+    unit: '',
+    correctAnswer: 2,
+    explanation: 'בנה מטריצה שהשורות הן הוקטורים ודרג:\n[[1,0,1],[0,1,2],[1,1,3]]\nR3←R3−R1: [0,1,2] = שורה 2 בדיוק!\nR3←R3−R2=[0,0,0]\nrank=2, לכן dim(W)=2.\n(1,1,3)=(1,0,1)+(0,1,2) — תלות.',
+    commonMistakeTag: 'dim(Span) = rank של מטריצת הוקטורים',
+  },
+
+  {
+    id: 'q148',
+    lessonId: 'dimension',
+    topic: 'יותר וקטורים מהמימד',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'אם dim(V) = 3 ו-S מכיל 4 וקטורים השייכים ל-V, אזי S:',
+    options: [
+      'תלויה לינארית בהכרח',
+      'בלתי תלויה בהכרח',
+      'מהווה בסיס ל-V',
+      'פורשת את V בהכרח',
+    ],
+    correctAnswer: 0,
+    explanation: 'משפט: בכל מרחב ממימד k, כל קבוצה עם k+1 וקטורים ומעלה חייבת להיות תלויה. כאן dim=3 ויש 4 וקטורים: 4 > 3 → תלות בהכרח.',
+    wrongAnswerFeedback: {
+      1: '4 וקטורים במרחב ממימד 3 — תמיד תלויים. לא ייתכן 4 בלתי תלויים ב-V.',
+      2: 'קבוצה תלויה לא יכולה להיות בסיס — בסיס דורש בלתי-תלות ופריסה.',
+      3: 'יתכן שהם פורשים, אבל בטוח תלויים — ולכן לא בסיס.',
+    },
+    commonMistakeTag: 'k+1 וקטורים במרחב ממימד k — תמיד תלויים',
+  },
+
+  {
+    id: 'q149',
+    lessonId: 'dimension',
+    topic: 'טעות: מימד תלוי בבחירת בסיס',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"מצאתי שני בסיסים שונים למרחב V:
+B₁ = {(1,0), (0,1)} — 2 וקטורים
+B₂ = {(1,1), (1,−1), (0,1)} — 3 וקטורים
+לכן dim(V) לא מוגדר — תלוי בבסיס."`,
+    options: [
+      'B₂ אינה בסיס — (0,1) = ½(1,1)−½(1,−1) — תלות. לכל מרחב יש מימד יחיד מוגדר',
+      'B₁ אינה בסיס ל-V',
+      'אכן ייתכן שמימד תלוי בבסיס שבוחרים',
+      'הגודל של בסיסים שונים יכול להיות שונה — זה תקין',
+    ],
+    correctAnswer: 0,
+    explanation: 'כל הבסיסים של מרחב V חייבים להכיל אותו מספר וקטורים. B₂ פסולה כי (0,1) = ½(1,1)−½(1,−1) — תלות. V = R², dim(R²) = 2 בכל בחירת בסיס.',
+    wrongAnswerFeedback: {
+      1: 'B₁ = {(1,0),(0,1)} הוא הבסיס הסטנדרטי של R² — תקינה לחלוטין.',
+      2: 'לכל מרחב בעל-מימד סופי יש מימד קבוע אחד — זהו משפט יסוד.',
+      3: 'הגודל של כל הבסיסים של אותו מרחב תמיד זהה. זהו משפט יסוד.',
+    },
+    commonMistakeTag: 'המימד אינו תלוי בבחירת הבסיס',
+  },
+
+  {
+    id: 'q150',
+    lessonId: 'dimension',
+    topic: 'בלתי-תלות במרחב ממימד n → בסיס',
+    difficulty: 3,
+    type: 'conceptual',
+    question: 'אם dim(W) = 2 ו-{v₁, v₂} בלתי תלויים לינארית ב-W, האם {v₁, v₂} בסיס ל-W?',
+    options: [
+      'כן — שני וקטורים בלתי תלויים במרחב ממימד 2 תמיד מהווים בסיס',
+      'לא בהכרח — צריך לבדוק גם שהם פורשים את W',
+      'לא בהכרח — צריך לבדוק גם שהם אורתוגונלים',
+      'כן — אבל רק אם v₁, v₂ שייכים ל-W',
+    ],
+    correctAnswer: 0,
+    explanation: 'משפט: במרחב ממימד k, כל k וקטורים בלתי תלויים הם אוטומטית בסיס. כאן k=2 ו-{v₁,v₂} בלתי תלויים — הם גם פורשים את W בהכרח (אי-אפשר להוסיף וקטור ב-W שלא יהיה צירוף שלהם).',
+    wrongAnswerFeedback: {
+      1: 'משפט היסוד: k וקטורים בלתי תלויים במרחב ממימד k פורשים אותו אוטומטית — אין צורך לבדוק בנפרד.',
+      2: 'אורתוגונליות לא נדרשת. {(1,0),(1,1)} בלתי תלויים ב-R² ומהווים בסיס, למרות שאינם אורתוגונלים.',
+      3: 'אם הם בלתי תלויים "ב-W" הם בהכרח שייכים ל-W. זה כלול בהנחת הבלתי-תלות ב-W.',
+    },
+    commonMistakeTag: 'k וקטורים בלתי תלויים במרחב ממימד k = בסיס',
+  },
+
+  // שיעור 3: מציאת בסיס ל-Span ול-Col(A) (q151–q156)
+  {
+    id: 'q151',
+    lessonId: 'basis-col-span',
+    topic: 'מאיזו מטריצה לוקחים עמודות לבסיס',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'דירגנו מטריצה A לצורת REF וזיהינו פיבוטים בעמודות 1 ו-3. מאיזו מטריצה לוקחים את העמודות לבסיס ל-Col(A)?',
+    options: [
+      'מהמטריצה המקורית A',
+      'מהמטריצה המדורגת REF',
+      'מהמטריצה המדורגת RREF',
+      'מה שנוח יותר — לא משנה',
+    ],
+    correctAnswer: 0,
+    explanation: 'תמיד לוקחים עמודות מ-A המקורית, לא מה-REF. הדירוג שינה את הווקטורים עצמם, אבל שמר על יחסי התלות. לכן מיקומי הפיבוטים מה-REF מראים אילו עמודות מקוריות הן "עצמאיות".',
+    wrongAnswerFeedback: {
+      1: 'עמודות ה-REF שונות מעמודות A — הדירוג שינה את הווקטורים. Col(REF) ≠ Col(A).',
+      2: 'גם ה-RREF שינה את הווקטורים. לא לוקחים עמודות מהמדורגת בכלל.',
+      3: 'זה כלל — תמיד A מקורית. לא "לא משנה".',
+    },
+    commonMistakeTag: 'בסיס ל-Col(A): עמודות מ-A, לא מה-REF',
+  },
+
+  {
+    id: 'q152',
+    lessonId: 'basis-col-span',
+    topic: 'מציאת בסיס ל-Col(A)',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'לאחר דירוג A = [[1,3,2],[2,6,5],[1,3,3]], התקבל REF עם פיבוטים בעמודות 1 ו-3. איזה מהבאים הוא בסיס ל-Col(A)?',
+    options: [
+      '{(1,2,1), (2,5,3)} — עמודות 1 ו-3 של A המקורית',
+      '{(1,0,0), (0,1,0)} — מה-RREF',
+      '{(3,6,3)} — העמודה השנייה של A',
+      '{(1,2,1), (3,6,3), (2,5,3)} — כל עמודות A',
+    ],
+    correctAnswer: 0,
+    explanation: 'פיבוטים בעמודות 1 ו-3 → לוקחים עמודות 1 ו-3 של A המקורית. עמודה 1: (1,2,1). עמודה 3: (2,5,3). dim(Col)=2=rank(A).',
+    wrongAnswerFeedback: {
+      1: 'עמודות ה-RREF שונות מעמודות A. Col(A) ≠ Col(RREF) כמרחבים ב-R³.',
+      2: 'העמודה השנייה (3,6,3) = 3·(1,2,1) — תלויה. עמודה ללא פיבוט לא נכנסת לבסיס.',
+      3: 'כל 3 העמודות כוללות עמודה תלויה — לא בסיס (בסיס דורש בלתי-תלות).',
+    },
+    commonMistakeTag: 'Col(A): עמודות פיבוט מ-A מקורית בלבד',
+  },
+
+  {
+    id: 'q153',
+    lessonId: 'basis-col-span',
+    topic: 'dim(Col(A))',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'A היא מטריצה 4×5 עם rank(A) = 3. מהו dim(Col(A))?',
+    unit: '',
+    correctAnswer: 3,
+    explanation: 'dim(Col(A)) = rank(A) = 3. Col(A) ⊆ R⁴ (A מטריצה 4×5 — כל עמודה היא וקטור ב-R⁴). מספר עמודות הפיבוט = rank = 3 → dim(Col) = 3.',
+    commonMistakeTag: 'dim(Col(A)) = rank(A) — לא מספר השורות/עמודות',
+  },
+
+  {
+    id: 'q154',
+    lessonId: 'basis-col-span',
+    topic: 'טעות: לקיחת עמודות מה-REF',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"דירגתי A וקיבלתי REF:
+[[1, 3, 2],
+ [0, 0, 1],
+ [0, 0, 0]]
+פיבוטים בעמודות 1 ו-3.
+לקחתי אותן מה-REF: {(1,0,0), (2,1,0)}.
+זהו בסיס ל-Col(A)."`,
+    options: [
+      'לוקחים עמודות פיבוט מ-A המקורית, לא מה-REF — הדירוג שינה את הווקטורים',
+      'הפיבוטים זוהו שגוי — הם בעמודות 2 ו-3',
+      'אין טעות, זה נכון',
+      'צריך לקחת גם את העמודה השנייה',
+    ],
+    correctAnswer: 0,
+    explanation: 'הטעות: (1,0,0) ו-(2,1,0) הן עמודות 1 ו-3 של ה-REF, לא של A המקורית. Col(REF) ≠ Col(A). הבסיס הנכון: עמודות 1 ו-3 של A לפני הדירוג.',
+    wrongAnswerFeedback: {
+      1: 'ב-REF: שורה 1 מובילה בעמודה 1; שורה 2 מובילה בעמודה 3. הזיהוי נכון. הטעות היא מאיזו מטריצה לוקחים.',
+      2: 'ראה הסבר: הטעות היא לקיחה מה-REF במקום מ-A המקורית.',
+      3: 'עמודה 2 ב-REF אין לה פיבוט — לא נכנסת לבסיס.',
+    },
+    commonMistakeTag: 'מקור עמודות לבסיס Col: תמיד A מקורית',
+  },
+
+  {
+    id: 'q155',
+    lessonId: 'basis-col-span',
+    topic: 'dim(Col) לעומת גודל המטריצה',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'A היא מטריצה 4×6 עם rank(A) = 3. מהו dim(Col(A))?',
+    options: ['3', '6', '4', '2'],
+    correctAnswer: 0,
+    explanation: 'dim(Col(A)) = rank(A) = 3. Col(A) ⊆ R⁴ (4 שורות), ומימדו = rank = 3. שימו לב: מתוך 6 עמודות, רק 3 "עצמאיות" — עמודות הפיבוט.',
+    wrongAnswerFeedback: {
+      1: '6 = מספר עמודות. dim(Col) = rank, לא מספר עמודות.',
+      2: '4 = dim(R⁴) שמכיל את Col(A). אבל dim(Col(A)) = rank = 3 < 4.',
+      3: '2 = nullity = 6−4? לא. nullity = n−rank = 6−3 = 3. dim(Col) = rank = 3.',
+    },
+    commonMistakeTag: 'dim(Col) = rank, לא מספר שורות/עמודות',
+  },
+
+  {
+    id: 'q156',
+    lessonId: 'basis-col-span',
+    topic: 'Col(A) = Rᵐ — תנאי',
+    difficulty: 3,
+    type: 'conceptual',
+    question: 'A היא מטריצה עם 3 שורות. מהו התנאי הנדרש כדי ש-Col(A) = R³?',
+    options: [
+      'rank(A) = 3',
+      'מספר עמודות A שווה ל-3',
+      'nullity(A) = 0',
+      'A חייבת להיות מטריצה ריבועית 3×3',
+    ],
+    correctAnswer: 0,
+    explanation: 'Col(A) = R³ ⟺ dim(Col(A)) = 3 ⟺ rank(A) = 3. זה אפשרי גם ל-A מטריצה 3×5 עם rank=3. לא נדרשת ריבועיות.',
+    wrongAnswerFeedback: {
+      1: 'אם A היא 3×3 עם rank=2, יש לה 3 עמודות אבל Col(A) ≠ R³.',
+      2: 'nullity=0 פירושו rank=n (מספר עמודות), לא rank=m (מספר שורות). לא בהכרח Col(A)=R³.',
+      3: 'A יכולה להיות 3×5, 3×10 וכדומה. לא נדרשת ריבועיות.',
+    },
+    commonMistakeTag: 'Col(A)=Rᵐ ⟺ rank(A)=m',
+  },
+
+  // שיעור 4: מציאת בסיס ל-Null(A) (q157–q163)
+  {
+    id: 'q157',
+    lessonId: 'basis-null',
+    topic: 'Null(A) כשאין משתנים חופשיים',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'אם Ax = 0 מאפשרת רק את הפתרון הטריוויאלי x = 0, מהו Null(A)?',
+    options: [
+      '{0} — הוקטור האפסי בלבד',
+      '∅ — קבוצה ריקה',
+      'Rⁿ כולו',
+      'תלוי בגודל A',
+    ],
+    correctAnswer: 0,
+    explanation: 'Null(A) מכיל תמיד לפחות 0 כי A·0=0. כשהפתרון היחיד הוא x=0, Null(A) = {0}. זה קורה כשrank(A)=n (מספר עמודות) — אין משתנים חופשיים.',
+    wrongAnswerFeedback: {
+      1: 'Null(A) מכיל תמיד לפחות 0 — לא ייתכן קבוצה ריקה.',
+      2: 'Null(A)=Rⁿ קורה כשA=0 (מטריצת אפסים). פתרון יחיד → Null={0}.',
+      3: 'כשהפתרון היחיד הוא x=0, Null(A)={0} תמיד, לא תלוי בגודל.',
+    },
+    commonMistakeTag: 'Null(A) מכיל תמיד לפחות 0',
+  },
+
+  {
+    id: 'q158',
+    lessonId: 'basis-null',
+    topic: 'nullity מ-RREF',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'לאחר דירוג A לצורת RREF, יש 3 פיבוטים ו-2 משתנים חופשיים. מהו nullity(A)?',
+    options: ['2', '3', '5', '1'],
+    correctAnswer: 0,
+    explanation: 'nullity(A) = dim(Null(A)) = מספר המשתנים החופשיים = 2. כל משתנה חופשי תורם וקטור בסיס אחד ל-Null(A). n = 3+2 = 5 עמודות, rank=3, nullity=2.',
+    wrongAnswerFeedback: {
+      1: '3 = מספר פיבוטים = rank(A). nullity ≠ rank.',
+      2: '5 = n = rank + nullity = מספר עמודות. לא nullity לבד.',
+      3: 'nullity = משתנים חופשיים = 2, לא 1.',
+    },
+    commonMistakeTag: 'nullity = משתנים חופשיים, לא פיבוטים',
+  },
+
+  {
+    id: 'q159',
+    lessonId: 'basis-null',
+    topic: 'חישוב nullity',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'A = [[1, 1, 2, 3], [0, 0, 1, 2]]. מהו nullity(A)?',
+    unit: '',
+    correctAnswer: 2,
+    explanation: 'A מטריצה 2×4. פיבוטים: שורה 1 בעמודה 1, שורה 2 בעמודה 3. rank(A)=2. nullity = n−rank = 4−2 = 2. עמודות 2 ו-4 הן החופשיות.',
+    commonMistakeTag: 'nullity = n−rank',
+  },
+
+  {
+    id: 'q160',
+    lessonId: 'basis-null',
+    topic: 'מציאת בסיס ל-Null(A) — צעד אחר צעד',
+    difficulty: 2,
+    type: 'guided-step',
+    question: 'מצא בסיס ל-Null(A) עבור A = [[1, 2, 0], [0, 0, 1]] צעד אחר צעד.\n\nA כבר ב-RREF. כמה וקטורים יש בבסיס, ומהם?',
+    explanation: 'RREF נתון. משוואות: x₁+2x₂=0, x₃=0.\nפיבוטים: עמודות 1,3 (x₁,x₃ קשורים). חופשי: עמודה 2 → x₂=t.\nx₁=−2t, x₃=0.\nx = t(−2,1,0).\nבסיס ל-Null(A) = {(−2,1,0)} — וקטור בסיס יחיד (משתנה חופשי אחד).',
+    commonMistakeTag: 'משתנה חופשי אחד → וקטור בסיס אחד',
+  },
+
+  {
+    id: 'q161',
+    lessonId: 'basis-null',
+    topic: 'טעות: עמודות RREF כבסיס ל-Null',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"פתרתי Ax=0 וקיבלתי RREF:
+[[1, 0, 2],
+ [0, 1, −1],
+ [0, 0,  0]]
+עמודות הפיבוט הן 1 ו-2.
+לקחתי אותן כבסיס ל-Null(A): {(1,0,0), (0,1,0)}."`,
+    options: [
+      'עמודות הפיבוט הן בסיס ל-Col(A), לא ל-Null(A). הבסיס ל-Null מגיע מהפתרון הפרמטרי של Ax=0',
+      'הפיבוטים לא זוהו נכון',
+      'אין טעות — זה אכן בסיס ל-Null(A)',
+      'צריך לקחת שורות, לא עמודות',
+    ],
+    correctAnswer: 0,
+    explanation: 'בסיס ל-Col(A) = עמודות פיבוט של A המקורית. בסיס ל-Null(A) = וקטורים מהפתרון הפרמטרי. עמודה 3 חופשית (x₃=t), x₁=−2t, x₂=t. בסיס ל-Null: {(−2,1,1)}.',
+    wrongAnswerFeedback: {
+      1: 'ה-RREF מראה: פיבוט ראשון בעמודה 1, פיבוט שני בעמודה 2. הזיהוי נכון. הטעות היא שימוש בעמודות אלה בתור Null.',
+      2: '{(1,0,0),(0,1,0)} הן עמודות פיבוט ה-RREF עצמה — בסיס ל-Col(RREF), לא ל-Null(A).',
+      3: 'שורות ה-RREF הן בסיס ל-Row(A), לא ל-Null(A).',
+    },
+    commonMistakeTag: 'בסיס ל-Null: מפתרון Ax=0, לא מעמודות',
+  },
+
+  {
+    id: 'q162',
+    lessonId: 'basis-null',
+    topic: 'גודל בסיס Null מ-rank',
+    difficulty: 3,
+    type: 'multiple-choice',
+    question: 'A היא מטריצה 3×4 עם rank(A) = 2. כמה וקטורים יש בבסיס ל-Null(A)?',
+    options: ['2', '3', '4', '1'],
+    correctAnswer: 0,
+    explanation: 'nullity(A) = n−rank = 4−2 = 2. לכן dim(Null(A)) = 2, ובסיס ל-Null(A) יכיל 2 וקטורים. (2 משתנים חופשיים → 2 וקטורי בסיס.)',
+    wrongAnswerFeedback: {
+      1: '3 = מספר שורות. nullity לא קשור למספר שורות.',
+      2: '4 = n = מספר עמודות. nullity = n−rank = 4−2 = 2.',
+      3: '1 — לא קשור. nullity = 4−2 = 2.',
+    },
+    commonMistakeTag: 'dim(Null) = nullity = n−rank',
+  },
+
+  {
+    id: 'q163',
+    lessonId: 'basis-null',
+    topic: 'Null כשידוע Col',
+    difficulty: 4,
+    type: 'multiple-choice',
+    question: 'A היא מטריצה 4×5. ידוע ש-Col(A) = R⁴. מהו dim(Null(A))?',
+    options: ['1', '4', '5', '0'],
+    correctAnswer: 0,
+    explanation: 'Col(A) = R⁴ ⟹ dim(Col(A)) = 4 ⟹ rank(A) = 4. nullity = n−rank = 5−4 = 1.',
+    wrongAnswerFeedback: {
+      1: '4 = rank = dim(Col). nullity = n−rank = 5−4 = 1.',
+      2: '5 = n = rank+nullity. לא nullity לבד.',
+      3: 'nullity=0 ⟺ rank=n=5. אבל A מטריצה 4×5 → rank ≤ min(4,5)=4 < 5. אי-אפשר rank=5.',
+    },
+    commonMistakeTag: 'Col(A)=Rᵐ ⟹ rank=m ⟹ nullity=n−m',
+  },
+
+  // שיעור 5: Rank, Nullity ומשפט הדרגה והמימד (q164–q168)
+  {
+    id: 'q164',
+    lessonId: 'rank-nullity-theorem',
+    topic: 'הצהרת משפט הדרגה והמימד',
+    difficulty: 1,
+    type: 'multiple-choice',
+    question: 'לפי משפט הדרגה והמימד, אם A מטריצה m×n, אז rank(A) + nullity(A) שווה ל:',
+    options: [
+      'n — מספר העמודות',
+      'm — מספר השורות',
+      'n × m — כפל המימדים',
+      '0 תמיד',
+    ],
+    correctAnswer: 0,
+    explanation: 'rank(A) + nullity(A) = n (מספר עמודות = מספר המשתנים). rank = פיבוטים (משתנים קשורים). nullity = משתנים חופשיים. יחד — כל המשתנים.',
+    wrongAnswerFeedback: {
+      1: 'm = מספר שורות = מספר משוואות. המשפט מתייחס למשתנים (עמודות), לא משוואות.',
+      2: 'n×m הוא מספר האיברים של A. אין קשר למשפט.',
+      3: 'rank+nullity = n ≥ 1. לא 0.',
+    },
+    commonMistakeTag: 'rank+nullity = מספר עמודות (לא שורות)',
+  },
+
+  {
+    id: 'q165',
+    lessonId: 'rank-nullity-theorem',
+    topic: 'חישוב nullity מ-rank',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'A היא מטריצה 3×7 עם rank(A) = 3. מהו nullity(A)?',
+    unit: '',
+    correctAnswer: 4,
+    explanation: 'nullity(A) = n−rank = 7−3 = 4. (n=7 עמודות, rank=3.) אימות: 3+4=7=n ✓. Col(A)=R³ כי rank=3=מספר שורות.',
+    commonMistakeTag: 'nullity = n−rank (n=עמודות, לא שורות)',
+  },
+
+  {
+    id: 'q166',
+    lessonId: 'rank-nullity-theorem',
+    topic: 'חישוב rank מ-nullity',
+    difficulty: 2,
+    type: 'multiple-choice',
+    question: 'A היא מטריצה 4×5 עם nullity(A) = 2. מהו rank(A)?',
+    options: ['3', '2', '5', '4'],
+    correctAnswer: 0,
+    explanation: 'rank + nullity = n ⟹ rank = n−nullity = 5−2 = 3. אימות: 3+2=5=n ✓.',
+    wrongAnswerFeedback: {
+      1: '2 = nullity. rank ≠ nullity בהכרח.',
+      2: '5 = n = rank+nullity. לא rank לבד.',
+      3: '4 = מספר שורות. rank = n−nullity = 5−2 = 3.',
+    },
+    commonMistakeTag: 'rank = n−nullity',
+  },
+
+  {
+    id: 'q167',
+    lessonId: 'rank-nullity-theorem',
+    topic: 'טעות: n = שורות במקום עמודות',
+    difficulty: 3,
+    type: 'find-the-mistake',
+    question: 'מצא את הטעות:',
+    fauxSolution:
+`"A היא מטריצה 3×5, rank(A) = 2.
+לפי משפט הדרגה: rank + nullity = מספר שורות
+2 + nullity = 3
+nullity = 1"`,
+    options: [
+      'המשפט אומר rank + nullity = מספר עמודות = 5, לא שורות. nullity = 5−2 = 3',
+      'rank(A) לא יכול להיות 2 עבור מטריצה 3×5',
+      'אין טעות — nullity = 1 נכון',
+      'צריך nullity = rank = 2',
+    ],
+    correctAnswer: 0,
+    explanation: 'n במשפט = מספר עמודות (=מספר המשתנים), לא שורות. A היא 3×5 → n=5 עמודות. nullity = 5−2 = 3. אימות: 2+3=5=n ✓.',
+    wrongAnswerFeedback: {
+      1: 'rank(A) ≤ min(m,n) = min(3,5) = 3. rank=2 אפשרי לחלוטין.',
+      2: 'ראה הסבר: nullity = 5−2 = 3, לא 1.',
+      3: 'nullity ≠ rank בהכרח. כאן rank=2, nullity=3.',
+    },
+    commonMistakeTag: 'n במשפט = עמודות, לא שורות',
+  },
+
+  {
+    id: 'q168',
+    lessonId: 'rank-nullity-theorem',
+    topic: 'אינטגרציה: rank, nullity, Col, Null',
+    difficulty: 4,
+    type: 'multiple-choice',
+    question: 'A היא מטריצה 4×6 עם rank(A) = 4. מהי הקביעה הנכונה?',
+    options: [
+      'nullity(A) = 2 ו-Col(A) = R⁴',
+      'nullity(A) = 2 ו-Col(A) = R⁶',
+      'nullity(A) = 4 ו-Col(A) = R⁴',
+      'nullity(A) = 0 ו-Col(A) = R⁴',
+    ],
+    correctAnswer: 0,
+    explanation: 'rank=4, n=6: nullity = 6−4 = 2. Col(A) ⊆ R⁴ (4 שורות), dim(Col) = rank = 4 = מספר שורות → Col(A) = R⁴. אימות: 4+2=6=n ✓.',
+    wrongAnswerFeedback: {
+      1: 'Col(A) ⊆ R⁴ כי A מטריצה 4×6 — עמודות הן וקטורים ב-R⁴, לא ב-R⁶.',
+      2: 'nullity=4 ⟹ rank = 6−4 = 2 ≠ 4. סתירה לנתון.',
+      3: 'nullity=0 ⟹ rank=6. אבל A מטריצה 4×6 → rank ≤ 4 < 6. אי-אפשר.',
+    },
+    commonMistakeTag: 'rank, nullity, Col — שלושתם יחד',
+  },
 ]
 
 export default questions
