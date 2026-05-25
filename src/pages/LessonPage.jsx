@@ -23,6 +23,13 @@ const LESSON_FORMULA = {
   'linear-dependence':    String.raw`\exists\, c_1,\ldots,c_k\text{ לא כולם אפס}: \quad c_1v_1+c_2v_2+\cdots+c_kv_k = \mathbf{0}`,
   'linear-independence':  String.raw`c_1v_1+\cdots+c_kv_k=\mathbf{0} \;\Longrightarrow\; c_1=c_2=\cdots=c_k=0`,
   'span-dependence-summary': String.raw`\underbrace{\operatorname{rank}=n}_{\text{Span}=\mathbb{R}^n} \qquad \underbrace{\operatorname{rank}=k}_{\text{בלתי-תלויים}} \qquad \underbrace{\operatorname{rank}=n=k}_{\text{בסיס}}`,
+
+  // Module 4 — Vector Spaces and Subspaces
+  'vector-space-intro': String.raw`u+v\in V,\quad c\cdot v\in V \qquad \forall\,u,v\in V,\; c\in\mathbb{R}`,
+  'subspace-intro':     String.raw`W\leq V \;\Longleftrightarrow\; \begin{cases}(1)\;\mathbf{0}\in W\\ (2)\;u,v\in W\;\Rightarrow\;u+v\in W\\ (3)\;c\in\mathbb{R},\,v\in W\;\Rightarrow\;cv\in W\end{cases}`,
+  'subspace-test':      String.raw`\mathbf{0}\notin W\;\Rightarrow\;W\text{ לא תת-מרחב} \qquad \exists v\in W,c<0:\;cv\notin W\;\Rightarrow\;W\text{ לא תת-מרחב}`,
+  'null-col-space':     String.raw`\mathrm{Null}(A)=\{x\in\mathbb{R}^n\mid Ax=\mathbf{0}\}\qquad \mathrm{Col}(A)=\mathrm{Span}\{a_1,\ldots,a_n\}`,
+  'row-space-summary':  String.raw`\underbrace{\mathrm{rank}(A)}_{\dim\mathrm{Col}=\dim\mathrm{Row}}+\underbrace{\mathrm{nullity}(A)}_{\dim\mathrm{Null}}=n`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
