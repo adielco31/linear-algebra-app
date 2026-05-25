@@ -16,6 +16,13 @@ const LESSON_FORMULA = {
   'vectors-geometry': String.raw`\|\mathbf{v}\| = \sqrt{v_1^2 + \cdots + v_n^2}, \qquad \hat{\mathbf{v}} = \frac{\mathbf{v}}{\|\mathbf{v}\|}, \qquad d(\mathbf{u},\mathbf{v}) = \|\mathbf{u}-\mathbf{v}\|`,
   'linear-combination': String.raw`c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_k\mathbf{v}_k, \quad c_i \in \mathbb{R}`,
   'vector-equations': String.raw`x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \cdots + x_n\mathbf{a}_n = \mathbf{b} \iff A\mathbf{x} = \mathbf{b}`,
+
+  // Module 3 — Span, Linear Dependence and Independence
+  'span-intro':           String.raw`\text{Span}\{v_1,\ldots,v_k\} = \{c_1v_1+\cdots+c_kv_k \mid c_i\in\mathbb{R}\}`,
+  'span-membership':      String.raw`b\in\text{Span}\{v_1,\ldots,v_k\} \iff \operatorname{rank}([v_1|\cdots|v_k]) = \operatorname{rank}([v_1|\cdots|v_k|b])`,
+  'linear-dependence':    String.raw`\exists\, c_1,\ldots,c_k\text{ לא כולם אפס}: \quad c_1v_1+c_2v_2+\cdots+c_kv_k = \mathbf{0}`,
+  'linear-independence':  String.raw`c_1v_1+\cdots+c_kv_k=\mathbf{0} \;\Longrightarrow\; c_1=c_2=\cdots=c_k=0`,
+  'span-dependence-summary': String.raw`\underbrace{\operatorname{rank}=n}_{\text{Span}=\mathbb{R}^n} \qquad \underbrace{\operatorname{rank}=k}_{\text{בלתי-תלויים}} \qquad \underbrace{\operatorname{rank}=n=k}_{\text{בסיס}}`,
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
