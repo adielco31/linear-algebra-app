@@ -2040,6 +2040,46 @@ R₂ ← R₂ − 2·R₁
     commonMistakeTag: 'מרחק בין נקודות',
   },
 
+  // Module 2 numeric-answer additions (q326–q328) — norm and unit vector
+  {
+    id: 'q326',
+    lessonId: 'vectors-geometry',
+    topic: 'חישוב נורמה ב-R²',
+    difficulty: 1,
+    type: 'numeric-answer',
+    question: 'חשב ‖v‖ עבור v = (6, 8).',
+    unit: '',
+    correctAnswer: 10,
+    explanation: '‖v‖ = √(6² + 8²) = √(36 + 64) = √100 = 10. הכלל: 6-8-10 הוא כפל של 3-4-5.',
+    commonMistakeTag: 'נורמה ב-R²: √(v₁²+v₂²)',
+  },
+
+  {
+    id: 'q327',
+    lessonId: 'vectors-geometry',
+    topic: 'חישוב נורמה ב-R³',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'חשב ‖w‖ עבור w = (2, 6, 3).',
+    unit: '',
+    correctAnswer: 7,
+    explanation: '‖w‖ = √(2² + 6² + 3²) = √(4 + 36 + 9) = √49 = 7.',
+    commonMistakeTag: 'נורמה ב-R³: √(v₁²+v₂²+v₃²)',
+  },
+
+  {
+    id: 'q328',
+    lessonId: 'vectors-geometry',
+    topic: 'נורמת וקטור יחידה',
+    difficulty: 2,
+    type: 'numeric-answer',
+    question: 'נתון v = (3/5, 4/5). חשב ‖v‖.',
+    unit: '',
+    correctAnswer: 1,
+    explanation: '‖v‖ = √((3/5)² + (4/5)²) = √(9/25 + 16/25) = √(25/25) = 1. לכן v הוא וקטור יחידה — נורמתו בדיוק 1.',
+    commonMistakeTag: 'וקטור יחידה: ‖v̂‖=1 תמיד',
+  },
+
   // ─────────────────────────────────────────────────────
   // Lesson 4 — linear-combination
   // ─────────────────────────────────────────────────────
