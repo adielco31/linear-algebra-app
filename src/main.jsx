@@ -2,6 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { applyDarkMode } from './utils/darkMode'
+
+// Apply before first render — prevents white flash on dark-mode reload
+applyDarkMode()
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

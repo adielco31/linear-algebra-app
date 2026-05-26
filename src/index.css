@@ -37,6 +37,103 @@ button, a {
   color: #1e1b4b;
 }
 
+/* ─── Dark Mode ──────────────────────────────────────────────────────────────
+   Strategy: add class="dark" to <html>. Rules below have specificity 0-2-0
+   (html.dark + utility class), beating Tailwind's 0-1-0. No !important needed.
+   Only light classes are overridden — slate-800/900 areas stay untouched.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Smooth transition on the root background */
+html { transition: background-color 200ms ease; }
+body { transition: background-color 200ms ease; }
+
+/* ── Page / container backgrounds ── */
+html.dark .bg-white      { background-color: #1e293b; }  /* slate-800  — card surface */
+html.dark .bg-gray-50    { background-color: #0f172a; }  /* slate-900  — page bg */
+html.dark .bg-gray-100   { background-color: #1e293b; }  /* slate-800  — tracks / tags */
+html.dark .bg-gray-200   { background-color: #334155; }  /* slate-700  — toggle track OFF */
+html.dark .bg-gray-300   { background-color: #475569; }  /* slate-600 */
+html.dark .bg-slate-50   { background-color: #162032; }  /* page bg for most screens */
+html.dark .bg-slate-100  { background-color: #162032; }  /* page bg for most screens */
+
+/* ── Neutral text — dark labels become light ── */
+html.dark .text-gray-900 { color: #f1f5f9; }   /* slate-100 */
+html.dark .text-gray-800 { color: #e2e8f0; }   /* slate-200 */
+html.dark .text-gray-700 { color: #cbd5e1; }   /* slate-300 */
+html.dark .text-gray-600 { color: #94a3b8; }   /* slate-400 */
+html.dark .text-gray-500 { color: #94a3b8; }   /* slate-400 */
+html.dark .text-slate-900 { color: #f1f5f9; }
+html.dark .text-slate-800 { color: #e2e8f0; }
+html.dark .text-slate-700 { color: #cbd5e1; }
+
+/* ── Accent text — lighten for readability on dark surfaces ── */
+html.dark .text-indigo-600  { color: #a5b4fc; }  /* indigo-300 */
+html.dark .text-indigo-900  { color: #c7d2fe; }  /* indigo-200 */
+html.dark .text-blue-600    { color: #93c5fd; }  /* blue-300 */
+html.dark .text-blue-400    { color: #93c5fd; }
+html.dark .text-green-800   { color: #bbf7d0; }  /* green-200 */
+html.dark .text-green-700   { color: #86efac; }  /* green-300 */
+html.dark .text-green-600   { color: #86efac; }
+html.dark .text-red-800     { color: #fecaca; }  /* red-200 */
+html.dark .text-red-700     { color: #fca5a5; }  /* red-300 */
+html.dark .text-red-600     { color: #fca5a5; }
+html.dark .text-orange-700  { color: #fed7aa; }  /* orange-200 */
+html.dark .text-amber-900   { color: #fef3c7; }  /* amber-100 */
+html.dark .text-amber-700   { color: #fde68a; }  /* amber-200 */
+html.dark .text-emerald-800 { color: #d1fae5; }  /* emerald-100 */
+
+/* ── Borders ── */
+html.dark .border-gray-50   { border-color: #1e293b; }
+html.dark .border-gray-100  { border-color: #334155; }
+html.dark .border-gray-200  { border-color: #334155; }
+html.dark .border-gray-400  { border-color: #475569; }
+html.dark .border-slate-200 { border-color: #334155; }
+html.dark .border-slate-300 { border-color: #475569; }
+html.dark .border-green-100 { border-color: #14532d; }
+html.dark .border-green-200 { border-color: #14532d; }
+html.dark .border-red-100   { border-color: #7f1d1d; }
+html.dark .border-red-200   { border-color: #7f1d1d; }
+html.dark .border-red-300   { border-color: #ef4444; }
+html.dark .border-orange-100 { border-color: #7c2d12; }
+html.dark .border-orange-200 { border-color: #7c2d12; }
+html.dark .border-amber-200  { border-color: #78350f; }
+
+/* ── Dividers ── */
+html.dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]) { border-color: #334155; }
+html.dark .divide-slate-50  > :not([hidden]) ~ :not([hidden]) { border-color: #1e293b; }
+
+/* ── Hover / active states ── */
+html.dark .hover\:bg-gray-50:hover    { background-color: #293548; }
+html.dark .hover\:bg-slate-50:hover   { background-color: #293548; }
+html.dark .hover\:bg-red-50:hover     { background-color: #450a0a; }
+html.dark .active\:bg-gray-100:active  { background-color: #334155; }
+html.dark .active\:bg-slate-100:active { background-color: #334155; }
+
+/* ── Tinted accent backgrounds → deep dark equivalents ── */
+html.dark .bg-indigo-50    { background-color: #1e1b4b; }
+html.dark .bg-indigo-100   { background-color: #1e1b4b; }
+html.dark .bg-blue-50      { background-color: #172554; }
+html.dark .bg-blue-100     { background-color: #172554; }
+html.dark .bg-green-50     { background-color: #052e16; }
+html.dark .bg-green-100    { background-color: #052e16; }
+html.dark .bg-green-200    { background-color: #14532d; }
+html.dark .bg-emerald-50   { background-color: #022c22; }
+html.dark .bg-emerald-100  { background-color: #022c22; }
+html.dark .bg-red-50       { background-color: #450a0a; }
+html.dark .bg-red-100      { background-color: #450a0a; }
+html.dark .bg-red-200      { background-color: #7f1d1d; }
+html.dark .bg-orange-50    { background-color: #431407; }
+html.dark .bg-orange-100   { background-color: #431407; }
+html.dark .bg-amber-50     { background-color: #451a03; }
+html.dark .bg-amber-100    { background-color: #451a03; }
+html.dark .bg-yellow-50    { background-color: #422006; }
+
+/* bg-green-50/40 (opacity modifier — different class name, needs separate rule) */
+html.dark .bg-green-50\/40 { background-color: rgba(5, 46, 22, 0.6); }
+
+/* ── Toggle thumb exception ── keep the thumb visually light */
+html.dark .toggle-thumb    { background-color: #e2e8f0; }
+
 .overflow-x-auto::-webkit-scrollbar {
   height: 4px;
 }

@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BottomNav from '../components/ui/BottomNav'
 import { useAuth } from '../lib/AuthContext'
 import { isSupabaseEnabled } from '../lib/supabaseClient'
 import { getPendingReviewCount } from '../utils/progressStorage'
 import { useProgressData } from '../lib/useProgressData'
+import { isDarkModeOn, setDarkMode } from '../utils/darkMode'
 import modules from '../data/modules'
 
 export default function ProfilePage() {
@@ -19,8 +21,16 @@ export default function ProfilePage() {
     0
   )
 
+  const [darkMode, setDarkModeState] = useState(isDarkModeOn)
+
   const displayName = user?.user_metadata?.display_name ?? null
   const email       = user?.email ?? null
+
+  function handleDarkToggle() {
+    const next = !darkMode
+    setDarkModeState(next)
+    setDarkMode(next)
+  }
 
   async function handleSignOut() {
     await signOut()
@@ -54,6 +64,17 @@ export default function ProfilePage() {
             ) : (
               <p className="text-sm text-gray-400">מצב אנונימי</p>
             )}
+          </div>
+        </div>
+
+        {/* ── Appearance ── */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-4">
+            <div className="flex items-center gap-2.5">
+              <MoonIcon />
+              <span className="text-sm font-medium text-gray-700">מצב כהה</span>
+            </div>
+            <DarkToggle enabled={darkMode} onToggle={handleDarkToggle} />
           </div>
         </div>
 
@@ -101,6 +122,33 @@ export default function ProfilePage() {
 
       <BottomNav />
     </div>
+  )
+}
+
+function DarkToggle({ enabled, onToggle }) {
+  return (
+    <button
+      onClick={onToggle}
+      role="switch"
+      aria-checked={enabled}
+      className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
+        enabled ? 'bg-indigo-600' : 'bg-gray-200'
+      }`}
+    >
+      <span
+        className={`absolute top-1 left-1 h-4 w-4 rounded-full shadow-sm transition-transform duration-200 bg-white toggle-thumb ${
+          enabled ? 'translate-x-5' : 'translate-x-0'
+        }`}
+      />
+    </button>
+  )
+}
+
+function MoonIcon() {
+  return (
+    <svg className="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    </svg>
   )
 }
 
