@@ -51,6 +51,8 @@ const LESSON_FORMULA = {
   'invertibility-conditions':    String.raw`A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}=n\;\Longleftrightarrow\;\mathrm{Null}=\{0\}\;\Longleftrightarrow\;\det(A)\neq 0`,
   'determinant-intro':           String.raw`\det\!\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc \qquad |\det(A)|=\text{שינוי שטח/נפח}`,
   'determinant-invertibility':   String.raw`\det(A)\neq 0\;\Longleftrightarrow\;A\text{ הפיכה}\;\Longleftrightarrow\;\mathrm{rank}(A)=n`,
+  'matrix-multiplication':          String.raw`A_{m\times k}\cdot B_{k\times n}=C_{m\times n},\quad C_{ij}=\sum_\ell A_{i\ell}B_{\ell j}\qquad AB\neq BA\text{ בדרך כלל}`,
+  'composition-of-transformations': String.raw`T_A\circ T_B(v)=A(Bv)=(AB)v\qquad\underbrace{B\text{ ראשונה}}_{\text{קרובה ל-}v}\;\underbrace{A\text{ שנייה}}_{\text{רחוקה מ-}v}`,
 
   // Module 8 — Eigenvalues, Eigenvectors and Diagonalization
   'eigenvalue-intro':                String.raw`Av=\lambda v,\quad v\neq\mathbf{0}\qquad\underbrace{\lambda}_{\text{ערך עצמי}}\in\mathbb{R},\quad\underbrace{v}_{\text{וקטור עצמי}}\neq\mathbf{0}`,
