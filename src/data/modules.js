@@ -1452,7 +1452,7 @@ const modules = [
           ],
           conclusion: 'עבור A = [[3,0],[0,5]]: ערכים עצמיים הם 3 ו-5, וקטורים עצמיים הם (1,0) ו-(0,1).',
         },
-        questionIds: ['q229', 'q230', 'q231', 'q232', 'q233', 'q234'],
+        questionIds: ['q229', 'q230', 'q231', 'q232', 'q233', 'q234', 'q313', 'q314'],
       },
       {
         id: 'finding-eigenvalues',
@@ -1469,7 +1469,7 @@ const modules = [
           ],
           conclusion: 'הערכים העצמיים של A = [[1,2],[2,1]] הם λ₁=3 ו-λ₂=−1.',
         },
-        questionIds: ['q235', 'q236', 'q237', 'q238', 'q239', 'q240', 'q241'],
+        questionIds: ['q235', 'q236', 'q237', 'q238', 'q239', 'q240', 'q241', 'q315'],
       },
       {
         id: 'finding-eigenvectors',
@@ -1487,7 +1487,7 @@ const modules = [
           ],
           conclusion: 'מרחב עצמי ל-λ=3: Span{(1,1)}. מרחב עצמי ל-λ=−1: Span{(1,−1)}.',
         },
-        questionIds: ['q242', 'q243', 'q244', 'q245', 'q246', 'q247'],
+        questionIds: ['q242', 'q243', 'q244', 'q245', 'q246', 'q247', 'q316', 'q317'],
       },
       {
         id: 'algebraic-geometric-multiplicity',
@@ -1504,7 +1504,7 @@ const modules = [
           ],
           conclusion: 'A = [[2,1],[0,2]]: ערך עצמי יחיד λ=2, ריבוי אלגברי=2, ריבוי גיאומטרי=1 → לא ניתנת ללכסון.',
         },
-        questionIds: ['q248', 'q249', 'q250', 'q251', 'q252'],
+        questionIds: ['q248', 'q249', 'q250', 'q251', 'q252', 'q318'],
       },
       {
         id: 'diagonalization',
@@ -1521,7 +1521,7 @@ const modules = [
           ],
           conclusion: 'A = PDP⁻¹ עם P = [[1,1],[1,−1]] ו-D = [[3,0],[0,−1]]. כדי לחשב Aⁿ: Aⁿ = PDⁿP⁻¹.',
         },
-        questionIds: ['q253', 'q254', 'q255', 'q256', 'q257', 'q258', 'q259', 'q260'],
+        questionIds: ['q253', 'q254', 'q255', 'q256', 'q257', 'q258', 'q259', 'q260', 'q319'],
       },
     ],
   },
